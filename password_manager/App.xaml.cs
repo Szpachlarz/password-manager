@@ -1,4 +1,5 @@
-﻿using System;
+﻿using password_manager.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
@@ -13,5 +14,13 @@ namespace password_manager
     /// </summary>
     public partial class App : Application
     {
+        protected override void OnStartup(StartupEventArgs e)
+        {
+            MainWindow = new MainWindow()
+            {
+                DataContext = new LoginViewModel()
+            };
+            base.OnStartup(e);
+        }
     }
 }
