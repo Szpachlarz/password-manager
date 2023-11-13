@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using password_manager.EntityFramework.DTO;
+using password_manager.Domain.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,7 +13,7 @@ namespace password_manager.EntityFramework
     {
         public password_managerDbContext(DbContextOptions options) : base(options) { }
 
-        public DbSet<UserAccountDto> UserAccounts { get; set; }
-        public DbSet<RecordDto> Records { get; set; }
+        public DbSet<UserAccount> UserAccounts { get; set; }
+        public DbSet<Record> Records { get; set; }
     }
 }

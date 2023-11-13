@@ -8,24 +8,15 @@ namespace password_manager.Domain.Models
 {
     public class Record
     {
-        public Guid RecordId { get; }
-        public string Title { get; }
-        public string Website { get; }
-        public string Email { get; }
-        public string Password { get; }
-        public string Description { get; }
-        public DateTime Created { get; }
-
-        public Record(Guid recordId, string title, string website, string email, string password, string description, DateTime created)
-        {
-            RecordId = recordId;
-            Title = title;
-            Website = website;
-            Email = email;
-            Password = password;
-            Description = description;
-            Created = created;
-        }
+        public Guid RecordId { get; set;  }
+        public string Title { get; set; }
+        public string Website { get; set; }
+        public string Email { get; set; }
+        public string Password { get; set; }
+        public string Description { get; set; }
+        public DateTime Created { get; set; }
+        public Guid UserId { get; set; }
+        public UserAccount UserAccount { get; set; } = null!;
 
     }
 }

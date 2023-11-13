@@ -8,8 +8,9 @@ namespace password_manager.Domain.Models
 {
     public class UserAccount
     {
-        public Guid Id { get; }
-        public string Username { get; }
-        public string Password { get; }
+        public Guid Id { get; set; }
+        public string Username { get; set; }
+        public string PasswordHash { get; set; }
+        public ICollection<Record> Records { get; } = new List<Record>();
     }
 }
