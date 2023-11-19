@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="password_manager.WPF.Views.DetailsPanelView"
+﻿<UserControl x:Class="password_manager.WPF.Views.TagsManagerView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -18,15 +18,14 @@
                 <ColumnDefinition Width="auto"/>
                 <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
-            <TextBlock Grid.Column="0"  Text="Tytuł wpisu" FontSize="26"/>
-            <Button Height="50px" Margin='583,20,115,20' Content="Usuń wpis" />
+            <TextBlock Grid.Column="0"  Text="Zarządzanie tagami" FontSize="26"/>
+            <Button Height="50px" Margin='583,20,115,20' Content="Dodaj nowy tag" />
             <Button Height="50px" Margin="702,20,10,20" Content="Powrót" Grid.ColumnSpan="3"/>
-            <Button Height="50px" Margin="460,20,252,20" Content="Edytuj wpis"/>
 
         </Grid>
 
         <Grid Grid.Row="1">
-            <components:DetailsPanelViewTable/>
+            <components:TagsManagerList/>
         </Grid>
 
     </Grid>
