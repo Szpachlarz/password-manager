@@ -1,4 +1,7 @@
-﻿using password_manager.Domain.Services;
+﻿using Microsoft.EntityFrameworkCore;
+using password_manager.Domain.Models;
+using password_manager.Domain.Services;
+using password_manager.EntityFramework.Services.Common;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,36 +10,47 @@ using System.Threading.Tasks;
 
 namespace password_manager.EntityFramework.Services
 {
-    public class GenericDataService<T> : IDataService<T> where T : class
+    public class GenericDataService<T> : IDataService<T> where T : DomainObject
     {
-        public GenericDataService()
+        private readonly password_managerDbContextFactory _contextFactory;
+        private readonly NonQueryDataService<T> _nonQueryDataService;
+        public GenericDataService(password_managerDbContextFactory contextFactory)
         {
-
+            _contextFactory = contextFactory;
+            _nonQueryDataService = new NonQueryDataService<T>(contextFactory);
         }
 
-        public Task<T> Create(T entity)
+        public async Task<T> Create(T entity)
         {
-            throw new NotImplementedException();
+            return await _nonQueryDataService.Create(entity);
         }
 
-        public Task<bool> Delete(int id)
+        public async Task<bool> Delete(int id)
         {
-            throw new NotImplementedException();
+            return await _nonQueryDataService.Delete(id);
         }
 
-        public Task<T> Get(int id)
+        public async Task<T> Get(int id)
         {
-            throw new NotImplementedException();
+            using (password_managerDbContext context = _contextFactory.CreateDbContext())
+            {
+                T entity = await context.Set<T>().FirstOrDefaultAsync((e) => e.Id == id);
+                return entity;
+            }
         }
 
-        public Task<IEnumerable<T>> GetAll()
+        public async Task<IEnumerable<T>> GetAll()
         {
-            throw new NotImplementedException();
+            using (password_managerDbContext context = _contextFactory.CreateDbContext())
+            {
+                IEnumerable<T> entities = await context.Set<T>().ToListAsync();
+                return entities;
+            }
         }
 
-        public Task<T> Update(int id, T entity)
+        public async Task<T> Update(int id, T entity)
         {
-            throw new NotImplementedException();
+            return await _nonQueryDataService.Update(id, entity);
         }
     }
 }

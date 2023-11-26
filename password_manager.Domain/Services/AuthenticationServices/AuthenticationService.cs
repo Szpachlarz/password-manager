@@ -40,7 +40,7 @@ namespace password_manager.Domain.Services.AuthenticationServices
             return storedAccount;
         }
 
-        public async Task<RegistrationResult> Register(string email, string username, string password, string confirmPassword)
+        public async Task<RegistrationResult> Register(string username, string password, string confirmPassword)
         {
             RegistrationResult result = RegistrationResult.Success;
 

@@ -7,14 +7,17 @@ using System.Threading.Tasks;
 
 namespace password_manager.ViewModels
 {
+    public delegate TViewModel CreateViewModel<TViewModel>() where TViewModel : ViewModelBase;
+
     public class ViewModelBase : INotifyPropertyChanged
     {
-        public event PropertyChangedEventHandler? PropertyChanged;
+        public virtual void Dispose() { }
 
-        protected virtual void OnPropertyChanged(string propertyName = null)
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        protected void OnPropertyChanged(string propertyName)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
-        protected virtual void Dispose() { }
     }
 }

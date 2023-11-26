@@ -15,9 +15,9 @@ namespace password_manager.Domain.Services.AuthenticationServices
         UsernameAlreadyExists
     }
 
-    internal interface IAuthenticationService
+    public interface IAuthenticationService
     {
-        Task<RegistrationResult> Register(string email, string username, string password, string confirmPassword);
+        Task<RegistrationResult> Register(string username, string password, string confirmPassword);
 
         Task<UserAccount> Login(string username, string password);
 

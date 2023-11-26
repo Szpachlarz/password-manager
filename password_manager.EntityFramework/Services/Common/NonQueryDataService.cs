@@ -1,4 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore.ChangeTracking;
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.ChangeTracking;
+using password_manager.Domain.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace password_manager.EntityFramework.Services.Common
 {
-    public class NonQueryDataService<T> where T : class
+    public class NonQueryDataService<T> where T : DomainObject
     {
         private readonly password_managerDbContextFactory _contextFactory;
         public NonQueryDataService(password_managerDbContextFactory contextFactory)
@@ -17,7 +19,7 @@ namespace password_manager.EntityFramework.Services.Common
 
         public async Task<T> Create(T entity)
         {
-            using (password_managerDbContext context = _contextFactory.Create())
+            using (password_managerDbContext context = _contextFactory.CreateDbContext())
             {
                 EntityEntry<T> createdResult = await context.Set<T>().AddAsync(entity);
                 await context.SaveChangesAsync();
@@ -28,7 +30,7 @@ namespace password_manager.EntityFramework.Services.Common
 
         public async Task<T> Update(int id, T entity)
         {
-            using (password_managerDbContext context = _contextFactory.Create())
+            using (password_managerDbContext context = _contextFactory.CreateDbContext())
             {
                 entity.Id = id;
 
@@ -41,7 +43,7 @@ namespace password_manager.EntityFramework.Services.Common
 
         public async Task<bool> Delete(int id)
         {
-            using (password_managerDbContext context = _contextFactory.Create())
+            using (password_managerDbContext context = _contextFactory.CreateDbContext())
             {
                 T entity = await context.Set<T>().FirstOrDefaultAsync((e) => e.Id == id);
                 context.Set<T>().Remove(entity);

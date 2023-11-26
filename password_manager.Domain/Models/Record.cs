@@ -6,9 +6,8 @@ using System.Threading.Tasks;
 
 namespace password_manager.Domain.Models
 {
-    public class Record
+    public class Record : DomainObject
     {
-        public Guid RecordId { get; set;  }
         public string Title { get; set; }
         public string Website { get; set; }
         public string Email { get; set; }

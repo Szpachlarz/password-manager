@@ -9,15 +9,20 @@ namespace password_manager.EntityFramework
 {
     public class password_managerDbContextFactory
     {
-        private readonly DbContextOptions _options;
+        private readonly Action<DbContextOptionsBuilder> _configureDbContext;
 
-        public password_managerDbContextFactory(DbContextOptions options)
+        public password_managerDbContextFactory(Action<DbContextOptionsBuilder> configureDbContext)
         {
-            _options = options;
+            _configureDbContext = configureDbContext;
         }
-        public password_managerDbContext Create()
+
+        public password_managerDbContext CreateDbContext()
         {
-            return new password_managerDbContext(_options);
+            DbContextOptionsBuilder<password_managerDbContext> options = new DbContextOptionsBuilder<password_managerDbContext>();
+
+            _configureDbContext(options);
+
+            return new password_managerDbContext(options.Options);
         }
     }
 }
