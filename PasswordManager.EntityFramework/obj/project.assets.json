@@ -2360,19 +2360,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Klaudia\\.nuget\\packages\\": {}
+    "C:\\Users\\wojci\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Klaudia\\source\\repos\\PasswordManager\\PasswordManager.EntityFramework\\PasswordManager.EntityFramework.csproj",
+      "projectUniqueName": "C:\\Users\\wojci\\Source\\Repos\\password-manager\\PasswordManager.EntityFramework\\PasswordManager.EntityFramework.csproj",
       "projectName": "PasswordManager.EntityFramework",
-      "projectPath": "C:\\Users\\Klaudia\\source\\repos\\PasswordManager\\PasswordManager.EntityFramework\\PasswordManager.EntityFramework.csproj",
-      "packagesPath": "C:\\Users\\Klaudia\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Klaudia\\source\\repos\\PasswordManager\\PasswordManager.EntityFramework\\obj\\",
+      "projectPath": "C:\\Users\\wojci\\Source\\Repos\\password-manager\\PasswordManager.EntityFramework\\PasswordManager.EntityFramework.csproj",
+      "packagesPath": "C:\\Users\\wojci\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\wojci\\Source\\Repos\\password-manager\\PasswordManager.EntityFramework\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\Klaudia\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\wojci\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -2386,8 +2386,8 @@
         "net7.0-windows7.0": {
           "targetAlias": "net7.0-windows",
           "projectReferences": {
-            "C:\\Users\\Klaudia\\source\\repos\\PasswordManager\\PasswordManager.Domain\\PasswordManager.Domain.csproj": {
-              "projectPath": "C:\\Users\\Klaudia\\source\\repos\\PasswordManager\\PasswordManager.Domain\\PasswordManager.Domain.csproj"
+            "C:\\Users\\wojci\\Source\\Repos\\password-manager\\PasswordManager.Domain\\PasswordManager.Domain.csproj": {
+              "projectPath": "C:\\Users\\wojci\\Source\\Repos\\password-manager\\PasswordManager.Domain\\PasswordManager.Domain.csproj"
             }
           }
         }
@@ -2446,7 +2446,7 @@
             "privateAssets": "none"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.402\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.302\\RuntimeIdentifierGraph.json"
       }
     }
   },

@@ -2336,19 +2336,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Klaudia\\.nuget\\packages\\": {}
+    "C:\\Users\\wojci\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Klaudia\\source\\repos\\PasswordManager\\PasswordManager.Domain\\PasswordManager.Domain.csproj",
+      "projectUniqueName": "C:\\Users\\wojci\\Source\\Repos\\password-manager\\PasswordManager.Domain\\PasswordManager.Domain.csproj",
       "projectName": "PasswordManager.Domain",
-      "projectPath": "C:\\Users\\Klaudia\\source\\repos\\PasswordManager\\PasswordManager.Domain\\PasswordManager.Domain.csproj",
-      "packagesPath": "C:\\Users\\Klaudia\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Klaudia\\source\\repos\\PasswordManager\\PasswordManager.Domain\\obj\\",
+      "projectPath": "C:\\Users\\wojci\\Source\\Repos\\password-manager\\PasswordManager.Domain\\PasswordManager.Domain.csproj",
+      "packagesPath": "C:\\Users\\wojci\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\wojci\\Source\\Repos\\password-manager\\PasswordManager.Domain\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\Klaudia\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\wojci\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -2422,7 +2422,7 @@
             "privateAssets": "none"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.402\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.302\\RuntimeIdentifierGraph.json"
       }
     }
   },
