@@ -53,7 +53,7 @@ namespace PasswordManager.WPF.Views {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/PasswordManager.WPF;V1.0.0.0;component/views/userpanelview.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/PasswordManager.WPF;component/views/userpanelview.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\..\Views\UserPanelView.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

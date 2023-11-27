@@ -7,6 +7,26 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
-            
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <TextBlock Grid.Column="0" FontSize="24" FontWeight="Bold" Text="Tytuł"/>
+            <TextBlock Grid.Column="1" FontSize="24" FontWeight="Bold" Text="Login"/>
+            <TextBlock Grid.Column="2" FontSize="24" FontWeight="Bold" Text="URL"/>
+            <TextBlock Grid.Column="3" FontSize="24" FontWeight="Bold" Text="Notatki"/>
+            <TextBlock Grid.Column="4" FontSize="24" FontWeight="Bold" Text="Modyfikowano"/>
+        </Grid>
     </Grid>
 </UserControl>
