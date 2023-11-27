@@ -9,7 +9,7 @@
     <Grid>
         <TextBlock HorizontalAlignment="Left" Margin="108,85,0,0" TextWrapping="Wrap" Text="Witaj" VerticalAlignment="Top" FontSize="36"/>
         <TextBox HorizontalAlignment="Center" Height="30" Margin="0,195,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="177" FontSize="18"/>
-        <Components:BindablePasswordBox HorizontalAlignment="Center" Margin="0,230,0,0" VerticalAlignment="Top" Height ="30" Width="177"/>
+        <!--<Components:BindablePasswordBox HorizontalAlignment="Center" Margin="0,230,0,0" VerticalAlignment="Top" Height ="30" Width="177"/>-->
         <Button Content="Zaloguj się" HorizontalAlignment="Center" Height="31" Margin="0,265,0,0" VerticalAlignment="Top" Width="177"/>
         <TextBlock HorizontalAlignment="Left" Margin="108,341,0,0" TextWrapping="Wrap" Text="Nie masz konta? Utwórz je!" VerticalAlignment="Top" FontSize="18"/>
         <Label Content="Login" HorizontalAlignment="Left" Margin="245,197,0,0" VerticalAlignment="Top"/>

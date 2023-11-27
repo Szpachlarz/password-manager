@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNet.Identity;
+//using Microsoft.AspNetCore.Identity;
 using PasswordManager.Domain.Exceptions;
 using PasswordManager.Domain.Models;
 using System;
