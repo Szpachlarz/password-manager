@@ -18,11 +18,32 @@ namespace PasswordManager.WPF.Components
     /// <summary>
     /// Interaction logic for PasswordBox.xaml
     /// </summary>
+    /// 
+
+
+
     public partial class PasswordBox : UserControl
     {
+
+
+        // Using a DependencyProperty as the backing store for MyProperty.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty PasswordProperty =
+            DependencyProperty.Register("MyProperty", typeof(string), typeof(PasswordBox), new PropertyMetadata(string.Empty));
+
+        public string Password
+        {
+            get { return (string)GetValue(PasswordProperty); }
+            set { SetValue(PasswordProperty, value); }
+        }
+
         public PasswordBox()
         {
             InitializeComponent();
+        }
+
+        private void PasswordBox_PasswordChanged(object sender, RoutedEventArgs e)
+        {
+            Password = passwordBox.Password;
         }
     }
 }
