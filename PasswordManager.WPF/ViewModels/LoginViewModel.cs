@@ -13,7 +13,7 @@ namespace PasswordManager.WPF.ViewModels
 {
     public class LoginViewModel : ViewModelBase
     {
-        private string _username = "SingletonSean";
+        private string _username = "";
         public string Username
         {
             get
