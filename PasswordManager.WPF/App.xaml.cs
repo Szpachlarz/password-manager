@@ -43,7 +43,7 @@ namespace PasswordManager.WPF
             PasswordManagerDbContextFactory contextFactory = _host.Services.GetRequiredService<PasswordManagerDbContextFactory>();
             using (PasswordManagerDbContext context = contextFactory.CreateDbContext())
             {
-                context.Database.Migrate();
+                //context.Database.Migrate();
             }
 
             Window window = _host.Services.GetRequiredService<MainWindow>();
