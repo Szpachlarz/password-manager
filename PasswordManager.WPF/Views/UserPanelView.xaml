@@ -6,11 +6,23 @@
              xmlns:local="clr-namespace:PasswordManager.WPF.Views"
              xmlns:components="clr-namespace:PasswordManager.WPF.Components"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
-        <Label Content="Test" HorizontalAlignment="Left" Margin="255,32,0,0" VerticalAlignment="Top"/>
+             d:DesignHeight="500" d:DesignWidth="1000">
+    <Grid Background="White">
+        <Grid>
+            <!-- Lewa strona z nazwą użytkownika -->
+            <StackPanel Height="50" Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Top">
+                <TextBlock Text="Witaj Nazwa użytkownika" Margin="10" FontSize="24"/>
+            </StackPanel>
 
-        <components:UserPanelViewTable />
+            <!-- Prawa strona z przyciskami -->
+            <StackPanel Height="50" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Top">
+                <Button Content="Dodaj rekord" Margin="10"/>
+                <Button Content="Zarządzaj tagami" Margin="10"/>
+            </StackPanel>
+        </Grid>
+        <Border BorderBrush="Black" BorderThickness="0,1,0,0" VerticalAlignment="Top" Margin="0, 50, 0, 0"/>
+        <components:UserPanelViewTable Margin="10, 70, 10, 10"/>
+        
 
     </Grid>
 </UserControl>
