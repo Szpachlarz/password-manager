@@ -11,13 +11,15 @@
         <Grid>
             <!-- Lewa strona z nazwą użytkownika -->
             <StackPanel Height="50" Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Top">
-                <TextBlock Text="Witaj Nazwa użytkownika" Margin="10" FontSize="24"/>
+                <TextBlock Text="Witaj" Margin="10" FontSize="24"/>
+                <TextBlock x:Name="usernameLabel" Margin="10" FontSize="24"/>
             </StackPanel>
 
             <!-- Prawa strona z przyciskami -->
             <StackPanel Height="50" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Top">
                 <Button Content="Dodaj rekord" Margin="10"/>
                 <Button Content="Zarządzaj tagami" Margin="10"/>
+                <Button Content="Wyloguj się" Margin="10"/>
             </StackPanel>
         </Grid>
         <Border BorderBrush="Black" BorderThickness="0,1,0,0" VerticalAlignment="Top" Margin="0, 50, 0, 0"/>
