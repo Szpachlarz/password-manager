@@ -9,13 +9,12 @@ using System.Windows.Input;
 
 namespace PasswordManager.WPF.ViewModels
 {
-    public class UserPanelViewModel : ViewModelBase
+    public class AddRecordViewModel : ViewModelBase
     {
-        public ICommand ViewAddRecordCommand { get; }
-        public UserPanelViewModel(IRenavigator renavigator)
+        public ICommand ViewUserPanelCommand { get; }
+        public AddRecordViewModel(IRenavigator renavigator)
         {
-            ViewAddRecordCommand = new RenavigateCommand(renavigator);
+            ViewUserPanelCommand = new RenavigateCommand(renavigator);
         }
-
     }
 }

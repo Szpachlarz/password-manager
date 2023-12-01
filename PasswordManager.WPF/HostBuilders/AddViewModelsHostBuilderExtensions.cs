@@ -38,7 +38,7 @@ namespace PasswordManager.WPF.HostBuilders
         private static UserPanelViewModel CreateUserPanelViewModel(IServiceProvider services)
         {
             return new UserPanelViewModel(
-                services.GetRequiredService<ViewModelDelegateRenavigator<RegisterViewModel>>());
+                services.GetRequiredService<ViewModelDelegateRenavigator<AddRecordViewModel>>());
         }
 
         private static LoginViewModel CreateLoginViewModel(IServiceProvider services)
@@ -55,6 +55,12 @@ namespace PasswordManager.WPF.HostBuilders
                 services.GetRequiredService<IAuthenticator>(),
                 services.GetRequiredService<ViewModelDelegateRenavigator<LoginViewModel>>(),
                 services.GetRequiredService<ViewModelDelegateRenavigator<LoginViewModel>>());
+        }
+
+        private static AddRecordViewModel CreateAddRecordViewModel(IServiceProvider services)
+        {
+            return new AddRecordViewModel(
+                services.GetRequiredService<ViewModelDelegateRenavigator<UserPanelViewModel>>());
         }
     }
 }
