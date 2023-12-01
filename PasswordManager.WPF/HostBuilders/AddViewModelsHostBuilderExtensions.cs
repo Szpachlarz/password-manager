@@ -24,15 +24,23 @@ namespace PasswordManager.WPF.HostBuilders
                 services.AddSingleton<CreateViewModel<UserPanelViewModel>>(services => () => CreateUserPanelViewModel(services));
                 services.AddSingleton<CreateViewModel<LoginViewModel>>(services => () => CreateLoginViewModel(services));
                 services.AddSingleton<CreateViewModel<RegisterViewModel>>(services => () => CreateRegisterViewModel(services));
+                services.AddSingleton<CreateViewModel<AddRecordViewModel>>(services => () => CreateAddRecordViewModel(services));
 
                 services.AddSingleton<IViewModelFactory, ViewModelFactory>();
 
                 services.AddSingleton<ViewModelDelegateRenavigator<UserPanelViewModel>>();
+                services.AddSingleton<ViewModelDelegateRenavigator<AddRecordViewModel>>();
                 services.AddSingleton<ViewModelDelegateRenavigator<LoginViewModel>>();
                 services.AddSingleton<ViewModelDelegateRenavigator<RegisterViewModel>>();
             });
 
             return host;
+        }
+
+        private static AddRecordViewModel CreateAddRecordViewModel(IServiceProvider services)
+        {
+            return new AddRecordViewModel(
+                services.GetRequiredService<ViewModelDelegateRenavigator<UserPanelViewModel>>());
         }
 
         private static UserPanelViewModel CreateUserPanelViewModel(IServiceProvider services)
@@ -55,12 +63,6 @@ namespace PasswordManager.WPF.HostBuilders
                 services.GetRequiredService<IAuthenticator>(),
                 services.GetRequiredService<ViewModelDelegateRenavigator<LoginViewModel>>(),
                 services.GetRequiredService<ViewModelDelegateRenavigator<LoginViewModel>>());
-        }
-
-        private static AddRecordViewModel CreateAddRecordViewModel(IServiceProvider services)
-        {
-            return new AddRecordViewModel(
-                services.GetRequiredService<ViewModelDelegateRenavigator<UserPanelViewModel>>());
         }
     }
 }
