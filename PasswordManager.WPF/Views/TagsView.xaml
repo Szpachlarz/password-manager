@@ -1,4 +1,4 @@
-﻿<Page x:Class="PasswordManager.WPF.Views.EditRecordView"
+﻿<Page x:Class="PasswordManager.WPF.Views.TagsView"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -7,23 +7,23 @@
       xmlns:components="clr-namespace:PasswordManager.WPF.Components"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="EditRecordView">
+      Title="TagsView">
 
     <Grid Background="White">
         <Grid>
             <!-- Lewa strona z nazwą użytkownika -->
             <StackPanel Height="50" Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Top">
-                <TextBlock Text="TytułWpisu" Margin="10, 10, 5, 10" FontSize="24"/>
-                <TextBlock Text="- Podgląd wpisu" Margin="5, 10, 10, 10" FontSize="24"/>
+                <TextBlock Text="Zarządzanie tagami" Margin="10, 10, 5, 10" FontSize="24"/>
             </StackPanel>
 
             <!-- Prawa strona z przyciskami -->
             <StackPanel Height="50" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Top">
-                <Button Content="Zapisz" Margin="10"/>
+                <Button Content="Dodaj nowy tag" Margin="10"/>
                 <Button Content="Powrót" Margin="10"/>
             </StackPanel>
         </Grid>
         <Border BorderBrush="Black" BorderThickness="0,1,0,0" VerticalAlignment="Top" Margin="0, 50, 0, 0"/>
-        <components:AddEditPanelViewTable Margin="10, 70, 10, 10"/>
+        <components:UserPanelviewTags Margin="10, 70, 10, 10"/>
+        <TextBlock Text="Porzebny komponent podobny do istniejącego, ale z przyciskami jak na zdjęciu-szablonie" Margin="160, 80, 5, 10" FontSize="24" TextWrapping="Wrap"/>
     </Grid>
 </Page>

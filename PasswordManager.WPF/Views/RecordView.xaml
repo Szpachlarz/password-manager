@@ -15,7 +15,6 @@
             <StackPanel Height="50" Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Top">
                 <TextBlock Text="TytułWpisu" Margin="10, 10, 5, 10" FontSize="24"/>
                 <TextBlock Text="- Podgląd wpisu" Margin="5, 10, 10, 10" FontSize="24"/>
-                <TextBlock x:Name="usernameLabel" Margin="10" FontSize="24"/>
             </StackPanel>
 
             <!-- Prawa strona z przyciskami -->
