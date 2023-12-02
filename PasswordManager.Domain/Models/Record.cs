@@ -14,7 +14,7 @@ namespace PasswordManager.Domain.Models
         public string Password { get; set; }
         public string Description { get; set; }
         public DateTime Created { get; set; }
-        public Guid UserId { get; set; }
-        public UserAccount UserAccount { get; set; } = null!;
+        //public Guid UserId { get; set; }
+        public Account Account { get; set; } = null!;
     }
 }

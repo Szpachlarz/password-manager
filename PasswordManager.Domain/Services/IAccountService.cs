@@ -7,8 +7,8 @@ using System.Threading.Tasks;
 
 namespace PasswordManager.Domain.Services
 {
-    public interface IAccountService : IDataService<UserAccount>
+    public interface IAccountService : IDataService<Account>
     {
-        Task<UserAccount> GetByUsername(string username);
+        Task<Account> GetByUsername(string username);
     }
 }

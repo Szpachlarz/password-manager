@@ -9,8 +9,8 @@ namespace PasswordManager.WPF.State.Accounts
 {
     public class AccountStore : IAccountStore
     {
-        private UserAccount _currentUser;
-        public UserAccount CurrentUser
+        private Account _currentUser;
+        public Account CurrentUser
         {
             get
             {

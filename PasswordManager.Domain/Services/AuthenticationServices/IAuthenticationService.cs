@@ -18,6 +18,6 @@ namespace PasswordManager.Domain.Services.AuthenticationServices
     {
         Task<RegistrationResult> Register(string username, string password, string confirmPassword);
 
-        Task<UserAccount> Login(string username, string password);
+        Task<Account> Login(string username, string password);
     }
 }

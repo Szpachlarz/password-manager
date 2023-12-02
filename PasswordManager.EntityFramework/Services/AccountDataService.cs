@@ -13,14 +13,14 @@ namespace PasswordManager.EntityFramework.Services
     public class AccountDataService : IAccountService
     {
         private readonly PasswordManagerDbContextFactory _contextFactory;
-        private readonly NonQueryDataService<UserAccount> _nonQueryDataService;
+        private readonly NonQueryDataService<Account> _nonQueryDataService;
 
         public AccountDataService(PasswordManagerDbContextFactory contextFactory)
         {
             _contextFactory = contextFactory;
-            _nonQueryDataService = new NonQueryDataService<UserAccount>(contextFactory);
+            _nonQueryDataService = new NonQueryDataService<Account>(contextFactory);
         }
-        public async Task<UserAccount> Create(UserAccount entity)
+        public async Task<Account> Create(Account entity)
         {
             return await _nonQueryDataService.Create(entity);
         }
@@ -30,39 +30,39 @@ namespace PasswordManager.EntityFramework.Services
             return await _nonQueryDataService.Delete(id);
         }
 
-        public async Task<UserAccount> Get(int id)
+        public async Task<Account> Get(int id)
         {
             using (PasswordManagerDbContext context = _contextFactory.CreateDbContext())
             {
-                UserAccount entity = await context.UserAccounts
+                Account entity = await context.Accounts
                     .Include(a => a.Records)
                     .FirstOrDefaultAsync((e) => e.Id == id);
                 return entity;
             }
         }
 
-        public async Task<IEnumerable<UserAccount>> GetAll()
+        public async Task<IEnumerable<Account>> GetAll()
         {
             using (PasswordManagerDbContext context = _contextFactory.CreateDbContext())
             {
-                IEnumerable<UserAccount> entities = await context.UserAccounts
+                IEnumerable<Account> entities = await context.Accounts
                     .Include(a => a.Records)
                     .ToListAsync();
                 return entities;
             }
         }
 
-        public async Task<UserAccount> GetByUsername(string username)
+        public async Task<Account> GetByUsername(string username)
         {
             using (PasswordManagerDbContext context = _contextFactory.CreateDbContext())
             {
-                return await context.UserAccounts
-                    .Include(a => a.Records)
-                    .FirstOrDefaultAsync(a => a.Username == username);
+                return await context.Accounts
+                    .Include(a => a.AccountHolder)
+                    .FirstOrDefaultAsync(a => a.AccountHolder.Username == username);
             }
         }
 
-        public async Task<UserAccount> Update(int id, UserAccount entity)
+        public async Task<Account> Update(int id, Account entity)
         {
             return await _nonQueryDataService.Update(id, entity);
         }

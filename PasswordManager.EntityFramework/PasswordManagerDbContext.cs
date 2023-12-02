@@ -12,7 +12,8 @@ namespace PasswordManager.EntityFramework
     {
         public PasswordManagerDbContext(DbContextOptions options) : base(options) { }
 
-        public DbSet<UserAccount> UserAccounts { get; set; }
+        public DbSet<User> Users { get; set; }
+        public DbSet<Account> Accounts { get; set; }
         public DbSet<Record> Records { get; set; }
     }
 }

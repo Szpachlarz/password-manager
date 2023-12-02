@@ -21,16 +21,16 @@ namespace PasswordManager.Domain.Services.AuthenticationServices
             _passwordHasher = passwordHasher;
         }
 
-        public async Task<UserAccount> Login(string username, string password)
+        public async Task<Account> Login(string username, string password)
         {
-            UserAccount storedAccount = await _accountService.GetByUsername(username);
+            Account storedAccount = await _accountService.GetByUsername(username);
 
             if (storedAccount == null)
             {
                 throw new UserNotFoundException(username);
             }
 
-            PasswordVerificationResult passwordResult = _passwordHasher.VerifyHashedPassword(storedAccount.PasswordHash, password);
+            PasswordVerificationResult passwordResult = _passwordHasher.VerifyHashedPassword(storedAccount.AccountHolder.PasswordHash, password);
 
             if (passwordResult != PasswordVerificationResult.Success)
             {
@@ -49,7 +49,7 @@ namespace PasswordManager.Domain.Services.AuthenticationServices
                 result = RegistrationResult.PasswordsDoNotMatch;
             }
 
-            UserAccount usernameAccount = await _accountService.GetByUsername(username);
+            Account usernameAccount = await _accountService.GetByUsername(username);
             if (usernameAccount != null)
             {
                 result = RegistrationResult.UsernameAlreadyExists;
@@ -59,13 +59,18 @@ namespace PasswordManager.Domain.Services.AuthenticationServices
             {
                 string hashedPassword = _passwordHasher.HashPassword(password);
 
-                UserAccount user = new UserAccount()
+                User user = new User()
                 {
                     Username = username,
                     PasswordHash = hashedPassword,
                 };
 
-                await _accountService.Create(user);
+                Account account = new Account()
+                {
+                    AccountHolder = user
+                };
+
+                await _accountService.Create(account);
             }
 
             return result;

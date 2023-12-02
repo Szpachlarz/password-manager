@@ -10,7 +10,7 @@ namespace PasswordManager.WPF.State.Authenticators
 {
     public interface IAuthenticator
     {
-        UserAccount CurrentUser { get; }
+        Account CurrentAccount { get; }
         bool IsLoggedIn { get; }
 
         event Action StateChanged;

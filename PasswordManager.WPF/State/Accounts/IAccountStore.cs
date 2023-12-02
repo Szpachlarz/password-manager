@@ -9,7 +9,7 @@ namespace PasswordManager.WPF.State.Accounts
 {
     public interface IAccountStore
     {
-        UserAccount CurrentUser { get; set; }
+        Account CurrentUser { get; set; }
         event Action StateChanged;
     }
 }

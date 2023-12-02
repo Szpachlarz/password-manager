@@ -21,7 +21,7 @@ namespace PasswordManager.WPF.HostBuilders
             {
                 services.AddSingleton<IPasswordHasher, PasswordHasher>();
                 services.AddSingleton<IAuthenticationService, AuthenticationService>();
-                services.AddSingleton<IDataService<UserAccount>, AccountDataService>();
+                services.AddSingleton<IDataService<Account>, AccountDataService>();
                 services.AddSingleton<IAccountService, AccountDataService>();
             });
 

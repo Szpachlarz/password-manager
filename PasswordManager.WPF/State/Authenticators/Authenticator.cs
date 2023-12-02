@@ -19,7 +19,7 @@ namespace PasswordManager.WPF.State.Authenticators
             _authenticationService = authenticationService;
             _accountStore = accountStore;
         }
-        public UserAccount CurrentUser
+        public Account CurrentAccount
         {
             get
             {
@@ -32,18 +32,18 @@ namespace PasswordManager.WPF.State.Authenticators
             }
         }
 
-        public bool IsLoggedIn => CurrentUser != null;
+        public bool IsLoggedIn => CurrentAccount != null;
 
         public event Action StateChanged;
 
         public async Task Login(string username, string password)
         {
-            CurrentUser = await _authenticationService.Login(username, password);
+            CurrentAccount = await _authenticationService.Login(username, password);
         }
 
         public void Logout()
         {
-            CurrentUser = null;
+            CurrentAccount = null;
         }
 
         public async Task<RegistrationResult> Register(string username, string password, string confirmPassword)
