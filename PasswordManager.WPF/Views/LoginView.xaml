@@ -13,7 +13,7 @@
         <components:BindablePasswordBox HorizontalAlignment="Center" Margin="0,230,0,0" VerticalAlignment="Top" Height ="30" Width="177" Password="{Binding Password}"/>
         <Button Content="Zaloguj się" HorizontalAlignment="Center" Height="31" Margin="0,265,0,0" VerticalAlignment="Top" Width="177" Command="{Binding LoginCommand}" IsDefault="True"/>
 
-        <Label Content="Login" HorizontalAlignment="Left" Margin="245,197,0,0" VerticalAlignment="Top"/>
+        <Label Content="Nazwa użytkownika" HorizontalAlignment="Left" Margin="245,197,0,0" VerticalAlignment="Top"/>
         <Label Content="Hasło" HorizontalAlignment="Left" Margin="245,234,0,0" VerticalAlignment="Top"/>
         <Button Content="Nie masz konta? Utwórz je!" HorizontalAlignment="Center" Margin="0,382,0,0" VerticalAlignment="Top" Command="{Binding ViewRegisterCommand}" Height="31" Width="176"/>
 

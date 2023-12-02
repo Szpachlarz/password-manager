@@ -11,9 +11,9 @@
     <Grid>
 
         <TextBlock HorizontalAlignment="Center" Margin="0,88,0,0" TextWrapping="Wrap" Text="Rejestracja nowego użytkownika" VerticalAlignment="Top" FontSize="36"/>
-        <Label Content="Nazwa użytkownika" HorizontalAlignment="Left" Margin="173,199,0,0" VerticalAlignment="Top"/>
-        <Label Content="Hasło" HorizontalAlignment="Left" Margin="173,232,0,0" VerticalAlignment="Top"/>
-        <Label Content="Powtórz hasło" HorizontalAlignment="Left" Margin="173,267,0,0" VerticalAlignment="Top"/>
+        <Label Content="Nazwa użytkownika" HorizontalAlignment="Left" Margin="245,197,0,0" VerticalAlignment="Top"/>
+        <Label Content="Hasło" HorizontalAlignment="Left" Margin="245,234,0,0" VerticalAlignment="Top"/>
+        <Label Content="Powtórz hasło" HorizontalAlignment="Left" Margin="245,269,0,0" VerticalAlignment="Top"/>
         <TextBox HorizontalAlignment="Center" Height="30" Margin="0,195,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="177" FontSize="18" Text="{Binding Username, UpdateSourceTrigger=PropertyChanged}"/>
         <components:BindablePasswordBox HorizontalAlignment="Center" Margin="0,230,0,0" VerticalAlignment="Top" Height ="30" Width="177" Password="{Binding Password}"/>
         <components:BindablePasswordBox HorizontalAlignment="Center" Margin="0,265,0,0" VerticalAlignment="Top" Height ="30" Width="177" Password="{Binding ConfirmPassword}"/>
