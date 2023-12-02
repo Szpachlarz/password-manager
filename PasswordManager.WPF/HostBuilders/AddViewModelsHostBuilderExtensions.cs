@@ -25,6 +25,7 @@ namespace PasswordManager.WPF.HostBuilders
                 services.AddSingleton<CreateViewModel<LoginViewModel>>(services => () => CreateLoginViewModel(services));
                 services.AddSingleton<CreateViewModel<RegisterViewModel>>(services => () => CreateRegisterViewModel(services));
                 services.AddSingleton<CreateViewModel<AddRecordViewModel>>(services => () => CreateAddRecordViewModel(services));
+                services.AddSingleton<CreateViewModel<TagsViewModel>>(services => () => CreateTagsViewModel(services));
 
                 services.AddSingleton<IViewModelFactory, ViewModelFactory>();
 
@@ -32,6 +33,7 @@ namespace PasswordManager.WPF.HostBuilders
                 services.AddSingleton<ViewModelDelegateRenavigator<AddRecordViewModel>>();
                 services.AddSingleton<ViewModelDelegateRenavigator<LoginViewModel>>();
                 services.AddSingleton<ViewModelDelegateRenavigator<RegisterViewModel>>();
+                services.AddSingleton<ViewModelDelegateRenavigator<TagsViewModel>>();
             });
 
             return host;
@@ -47,6 +49,12 @@ namespace PasswordManager.WPF.HostBuilders
         {
             return new UserPanelViewModel(
                 services.GetRequiredService<ViewModelDelegateRenavigator<AddRecordViewModel>>());
+        }
+
+        private static TagsViewModel CreateTagsViewModel(IServiceProvider services)
+        {
+            return new TagsViewModel(
+                services.GetRequiredService<ViewModelDelegateRenavigator<UserPanelViewModel>>());
         }
 
         private static LoginViewModel CreateLoginViewModel(IServiceProvider services)

@@ -18,5 +18,9 @@
             <views:UserPanelView />
         </DataTemplate>
 
+        <DataTemplate DataType="{x:Type viewmodels:AddRecordViewModel}">
+            <views:AddRecords />
+        </DataTemplate>
+
     </Application.Resources>
 </Application>

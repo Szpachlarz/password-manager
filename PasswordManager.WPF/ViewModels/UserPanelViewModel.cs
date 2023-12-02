@@ -12,9 +12,11 @@ namespace PasswordManager.WPF.ViewModels
     public class UserPanelViewModel : ViewModelBase
     {
         public ICommand ViewAddRecordCommand { get; }
+        public ICommand ViewTagsCommand { get; }
         public UserPanelViewModel(IRenavigator renavigator)
         {
             ViewAddRecordCommand = new RenavigateCommand(renavigator);
+            ViewTagsCommand = new RenavigateCommand(renavigator);
         }
 
     }
