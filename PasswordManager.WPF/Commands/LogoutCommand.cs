@@ -13,39 +13,48 @@ namespace PasswordManager.WPF.Commands
 {
     public class LogoutCommand : AsyncCommandBase
     {
-        private readonly LoginViewModel _loginViewModel;
+        private readonly UserPanelViewModel _userPanelViewModel;
         private readonly IAuthenticator _authenticator;
         private readonly IRenavigator _renavigator;
 
-        public LogoutCommand(LoginViewModel loginViewModel, IAuthenticator authenticator, IRenavigator renavigator)
+        public LogoutCommand(UserPanelViewModel userPanelViewModel, IAuthenticator authenticator, IRenavigator renavigator)
         {
-            _loginViewModel = loginViewModel;
+            _userPanelViewModel = userPanelViewModel;
             _authenticator = authenticator;
             _renavigator = renavigator;
 
-            _loginViewModel.PropertyChanged += LoginViewModel_PropertyChanged;
+            _userPanelViewModel.PropertyChanged += UserPanelViewModel_PropertyChanged;
         }
 
         public override bool CanExecute(object parameter)
         {
-            return _loginViewModel.CanLogin && base.CanExecute(parameter);
+            //return _userPanelViewModel.CanLogout && base.CanExecute(parameter);
+            return base.CanExecute(parameter);
         }
 
         public override async Task ExecuteAsync(object parameter)
         {
-            _loginViewModel.ErrorMessage = string.Empty;
+            _userPanelViewModel.ErrorMessage = string.Empty;
 
+            try
+            {
                 _authenticator.Logout();
-
                 _renavigator.Renavigate();
+            }
+            catch (Exception) 
+            {
+                _userPanelViewModel.ErrorMessage = "Logout failed.";
+            }                
         }
 
-        private void LoginViewModel_PropertyChanged(object sender, PropertyChangedEventArgs e)
+        private void UserPanelViewModel_PropertyChanged(object sender, PropertyChangedEventArgs e)
         {
-            if (e.PropertyName == nameof(LoginViewModel.CanLogin))
-            {
-                OnCanExecuteChanged();
-            }
+            //if (e.PropertyName == nameof(UserPanelViewModel.CanLogout))
+            //{
+            //    OnCanExecuteChanged();
+            //}
+
+            OnCanExecuteChanged();
         }
 
     }

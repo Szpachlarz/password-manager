@@ -35,12 +35,11 @@ namespace PasswordManager.WPF.ViewModels
         public ICommand LoadRecordsCommand { get; }
         public ICommand ViewAddRecordCommand { get; }
         public ICommand UserLogout { get; }
-        public UserPanelViewModel(IRenavigator renavigator, IRecordService recordService, IAccountStore accountStore, LoginViewModel loginViewModel, IAuthenticator authenticator)
+        public UserPanelViewModel(IRenavigator addRecordRenavigator, IRecordService recordService, IAccountStore accountStore, IAuthenticator authenticator, IRenavigator loginRenavigator)
         {
-            ViewAddRecordCommand = new RenavigateCommand(renavigator);
+            ViewAddRecordCommand = new RenavigateCommand(addRecordRenavigator);
             LoadRecordsCommand = new LoadRecordsCommand(recordService, accountStore);
-            //UserLogout = new RenavigateCommand(renavigator);
-            UserLogout = new LogoutCommand(loginViewModel, authenticator, renavigator);
+            UserLogout = new LogoutCommand(this, authenticator, loginRenavigator);
         }
 
     }

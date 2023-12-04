@@ -56,7 +56,8 @@ namespace PasswordManager.WPF.HostBuilders
                 services.GetRequiredService<ViewModelDelegateRenavigator<AddRecordViewModel>>(),
                 services.GetRequiredService<IRecordService>(),
                 services.GetRequiredService<IAccountStore>(),
-                services.GetRequiredService<ViewModelDelegateRenavigator<UserPanelViewModel>>());
+                services.GetRequiredService<IAuthenticator>(),
+                services.GetRequiredService<ViewModelDelegateRenavigator<LoginViewModel>>());
         }
 
         private static TagsViewModel CreateTagsViewModel(IServiceProvider services)
