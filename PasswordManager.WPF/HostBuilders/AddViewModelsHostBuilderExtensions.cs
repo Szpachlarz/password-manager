@@ -1,5 +1,7 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using PasswordManager.Domain.Services.RecordServices;
+using PasswordManager.WPF.State.Accounts;
 using PasswordManager.WPF.State.Authenticators;
 using PasswordManager.WPF.State.Navigators;
 using PasswordManager.WPF.ViewModels;
@@ -42,13 +44,18 @@ namespace PasswordManager.WPF.HostBuilders
         private static AddRecordViewModel CreateAddRecordViewModel(IServiceProvider services)
         {
             return new AddRecordViewModel(
+                //services.GetRequiredService<RecordFormViewModel>(),
+                services.GetRequiredService<IAccountStore>(),
+                services.GetRequiredService<IRecordService>(),
                 services.GetRequiredService<ViewModelDelegateRenavigator<UserPanelViewModel>>());
         }
 
         private static UserPanelViewModel CreateUserPanelViewModel(IServiceProvider services)
         {
-            return new UserPanelViewModel(
-                services.GetRequiredService<ViewModelDelegateRenavigator<AddRecordViewModel>>());
+            return new UserPanelViewModel(                
+                services.GetRequiredService<ViewModelDelegateRenavigator<AddRecordViewModel>>(),
+                services.GetRequiredService<IRecordService>(),
+                services.GetRequiredService<IAccountStore>());
         }
 
         private static TagsViewModel CreateTagsViewModel(IServiceProvider services)

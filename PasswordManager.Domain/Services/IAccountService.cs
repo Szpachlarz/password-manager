@@ -10,5 +10,6 @@ namespace PasswordManager.Domain.Services
     public interface IAccountService : IDataService<Account>
     {
         Task<Account> GetByUsername(string username);
+        Task<Account> GetById(int id);
     }
 }

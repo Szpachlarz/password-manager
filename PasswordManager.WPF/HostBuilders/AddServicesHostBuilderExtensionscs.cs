@@ -4,6 +4,7 @@ using Microsoft.Extensions.Hosting;
 using PasswordManager.Domain.Models;
 using PasswordManager.Domain.Services;
 using PasswordManager.Domain.Services.AuthenticationServices;
+using PasswordManager.Domain.Services.RecordServices;
 using PasswordManager.EntityFramework.Services;
 using System;
 using System.Collections.Generic;
@@ -23,6 +24,7 @@ namespace PasswordManager.WPF.HostBuilders
                 services.AddSingleton<IAuthenticationService, AuthenticationService>();
                 services.AddSingleton<IDataService<Account>, AccountDataService>();
                 services.AddSingleton<IAccountService, AccountDataService>();
+                services.AddSingleton<IRecordService, RecordService>();
             });
 
             return host;

@@ -18,7 +18,6 @@
             <!-- Prawa strona z przyciskami -->
             <StackPanel Height="50" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Top">
                 <Button Content="Dodaj rekord" Margin="10" Command="{Binding ViewAddRecordCommand}"/>
-                <Button Content="Zarządzaj tagami" Margin="10" Command="{Binding ViewTagsCommand}"/>
                 <Button Content="Wyloguj się" Margin="10"/>
             </StackPanel>
         </Grid>

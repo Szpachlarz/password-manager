@@ -5,6 +5,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 
 namespace PasswordManager.Domain.Services.RecordServices
 {
@@ -17,14 +18,14 @@ namespace PasswordManager.Domain.Services.RecordServices
             _dataService = dataService;
         }
 
-        public async Task<Account> AddRecord(Account account, string title, string website, string email, string password, string description)
+        public async Task<Account> AddRecord(Account account, string title, string website, string username, string password, string description)
         {
             Record newRecord = new Record()
             {
                 Account = account,
                 Title = title,
                 Website = website,
-                Email = email,
+                Username = username,
                 Password = password,
                 Description = description,
                 Created = DateTime.Now
@@ -35,19 +36,48 @@ namespace PasswordManager.Domain.Services.RecordServices
             return account;
         }
 
-        public async Task<Account> DeleteRecord(Account account, string title, string website, string email, string password, string description)
+        public async Task<Account> DeleteRecord(int recordId, Account account)
         {
-            throw new NotImplementedException();
+            Record deleteRecord = account.Records.FirstOrDefault(r => r.Id == recordId);
+
+            if (deleteRecord != null)
+            {
+                account.Records.Remove(deleteRecord);
+                await _dataService.Update(account.Id, account);
+            }
+
+            return account;
         }
 
-        public async Task<Account> EditRecord(Account account, string title, string website, string email, string password, string description)
+        public async Task<Account> UpdateRecord(int recordId, Account account, string title, string website, string username, string password, string description)
         {
-            throw new NotImplementedException();
+            Record updateRecord = account.Records.FirstOrDefault(r => r.Id == recordId);
+
+            if (updateRecord != null)
+            {
+                updateRecord.Title = title;
+                updateRecord.Website = website;
+                updateRecord.Username = username;
+                updateRecord.Password = password;
+                updateRecord.Description = description;
+            }
+
+            //account.Records.Add(updatedRecord);
+            await _dataService.Update(account.Id, account);
+            return account;
         }
 
-        //public async Task<IEnumerable<Record>> GetRecordsById(Guid userId)
-        //{
-        //    throw new NotImplementedException();
-        //}
+        public async Task<IEnumerable<Record>> GetRecordsById(Account account)
+        {
+
+            Account userAccount = await _dataService.Get(account.Id);
+
+            if (userAccount != null)
+            {
+                return userAccount.Records;
+            }
+
+            return Enumerable.Empty<Record>();
+        }
     }
 }

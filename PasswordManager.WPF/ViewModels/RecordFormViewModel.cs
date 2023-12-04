@@ -1,31 +1,14 @@
-﻿using PasswordManager.Domain.Services.RecordServices;
-using PasswordManager.WPF.Commands;
-using PasswordManager.WPF.State.Accounts;
-using PasswordManager.WPF.State.Authenticators;
-using PasswordManager.WPF.State.Navigators;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 
 namespace PasswordManager.WPF.ViewModels
 {
-    public class AddRecordViewModel : ViewModelBase
+    public class RecordFormViewModel : ViewModelBase
     {
-        //public RecordFormViewModel RecordFormViewModel { get; }
-
-        ////public ICommand ViewUserPanelCommand { get; }
-        ////public ICommand SubmitCommand { get; set; }
-        //public AddRecordViewModel(IAccountStore accountStore, IRecordService recordService, IRenavigator userPanelRenavigator)
-        //{
-        //    ICommand ViewUserPanelCommand = new RenavigateCommand(userPanelRenavigator);
-        //    ICommand SubmitCommand = new AddRecordCommand(this, recordService, accountStore);
-        //    RecordFormViewModel = new RecordFormViewModel(SubmitCommand, ViewUserPanelCommand);
-        //}
-
         private string _title;
         public string Title
         {
@@ -135,13 +118,10 @@ namespace PasswordManager.WPF.ViewModels
         public ICommand SubmitCommand { get; }
         public ICommand ViewUserPanelCommand { get; }
 
-        public AddRecordViewModel(IAccountStore accountStore, IRecordService recordService, IRenavigator userPanelRenavigator)
+        public RecordFormViewModel(ICommand submitCommand, ICommand cancelCommand)
         {
-            //SubmitCommand = submitCommand;
-            //ViewUserPanelCommand = cancelCommand;
-
-            ViewUserPanelCommand = new RenavigateCommand(userPanelRenavigator);
-            SubmitCommand = new AddRecordCommand(this, recordService, accountStore);
+            SubmitCommand = submitCommand;
+            ViewUserPanelCommand = cancelCommand;
         }
     }
 }

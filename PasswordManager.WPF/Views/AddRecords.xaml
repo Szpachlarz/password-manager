@@ -7,29 +7,106 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
+        <!--<TextBlock Grid.Row="1" Margin="0 10 0 0"
+            HorizontalAlignment="Center"
+            DataContext="{Binding ErrorMessageViewModel}"
+            Foreground="DarkRed"
+            Text="{Binding Message}"
+            Visibility="{Binding HasMessage, Converter={StaticResource BooleanToVisibilityConverter}}" />
+
+        <TextBlock Grid.Row="2" Margin="0 10 0 0"
+            HorizontalAlignment="Center"
+            DataContext="{Binding StatusMessageViewModel}"
+            Foreground="DarkGreen"
+            Text="{Binding Message}"
+            Visibility="{Binding HasMessage, Converter={StaticResource BooleanToVisibilityConverter}}" />
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
             <RowDefinition Height="4*"/>
-        </Grid.RowDefinitions>
+        </Grid.RowDefinitions>-->
 
         <Grid Grid.Row="0">
             <Grid>
                 <!-- Lewa strona z nazwą użytkownika -->
                 <StackPanel Height="50" Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Top">
-                    <TextBlock Text="Dodaj Record" Margin="10" FontSize="24"/>
+                    <TextBlock Text="Dodaj rekord" Margin="10" FontSize="24"/>
                 </StackPanel>
 
                 <!-- Prawa strona z przyciskami -->
                 <StackPanel Height="50" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Top">
 
                     <Button Content="Powrót" Margin="10" Width="78" Command="{Binding ViewUserPanelCommand}"/>
+                    <Button Content="Powrót" Margin="10" Width="78" Command="{Binding AddRecordCommand}"/>
+                    
                 </StackPanel>
             </Grid>
         </Grid>
 
         <Grid Grid.Row="1">
             <Grid Grid.Row="1">
-                <components:AddEditPanelViewTable/>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                </Grid.RowDefinitions>
+
+                <Grid Grid.Row="0" Margin="0,0,0,10">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="4*"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Grid.Column="0" FontSize="24" TextAlignment="Right" Text="Tytuł"/>
+                    <TextBox Grid.Column="1" Width="500" Text="{Binding Title, UpdateSourceTrigger=PropertyChanged}"/>
+                </Grid>
+
+                <Grid Grid.Row="1" Margin="0,0,0,10">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="4*"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Grid.Column="0" FontSize="24" TextAlignment="Right" Text="Login"/>
+                    <TextBox Grid.Column="1" Width="500" Text="{Binding Username, UpdateSourceTrigger=PropertyChanged}"/>
+                </Grid>
+
+                <Grid Grid.Row="2" Margin="0,0,0,10">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="4*"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Grid.Column="0" FontSize="24" TextAlignment="Right" Text="Hasło"/>
+                    <TextBox Grid.Column="1" Width="500" Text="{Binding Password, UpdateSourceTrigger=PropertyChanged}"/>
+                </Grid>
+
+                <Grid Grid.Row="3" Margin="0,0,0,10">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="4*"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Grid.Column="0" FontSize="24" TextAlignment="Right" Text="URL"/>
+                    <TextBox Grid.Column="1" Width="500" Text="{Binding Website, UpdateSourceTrigger=PropertyChanged}"/>
+                </Grid>
+
+                <Grid Grid.Row="4" Margin="0,0,0,10">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="4*"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Grid.Column="0" FontSize="24" TextAlignment="Right" Text="Notatki"/>
+                    <TextBox Grid.Column="1" Width="500" Text="{Binding Description, UpdateSourceTrigger=PropertyChanged}"/>
+                </Grid>
+
+                <Grid Grid.Row="5" Margin="0,0,0,10">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="4*"/>
+                    </Grid.ColumnDefinitions>
+                    <Button Content="Dodaj" Margin="10" Width="78" Command="{Binding SubmitCommand}"/>
+                </Grid>
+
             </Grid>
         </Grid>
     </Grid>

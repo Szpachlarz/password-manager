@@ -35,6 +35,7 @@ namespace PasswordManager.EntityFramework.Services
             using (PasswordManagerDbContext context = _contextFactory.CreateDbContext())
             {
                 Account entity = await context.Accounts
+                    .Include(a => a.AccountHolder)
                     .Include(a => a.Records)
                     .FirstOrDefaultAsync((e) => e.Id == id);
                 return entity;
@@ -46,6 +47,7 @@ namespace PasswordManager.EntityFramework.Services
             using (PasswordManagerDbContext context = _contextFactory.CreateDbContext())
             {
                 IEnumerable<Account> entities = await context.Accounts
+                    .Include(a => a.AccountHolder)
                     .Include(a => a.Records)
                     .ToListAsync();
                 return entities;
@@ -58,7 +60,19 @@ namespace PasswordManager.EntityFramework.Services
             {
                 return await context.Accounts
                     .Include(a => a.AccountHolder)
+                    .Include(a => a.Records)
                     .FirstOrDefaultAsync(a => a.AccountHolder.Username == username);
+            }
+        }
+
+        public async Task<Account> GetById(int id)
+        {
+            using (PasswordManagerDbContext context = _contextFactory.CreateDbContext())
+            {
+                return await context.Accounts
+                    .Include(a => a.AccountHolder)
+                    .Include(a => a.Records)
+                    .FirstOrDefaultAsync(a => a.AccountHolder.Id == id);
             }
         }
 

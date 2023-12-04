@@ -21,12 +21,16 @@
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
             <TextBlock Grid.Column="0" FontSize="24" FontWeight="Bold" Text="Tytuł"/>
             <TextBlock Grid.Column="1" FontSize="24" FontWeight="Bold" Text="Login"/>
             <TextBlock Grid.Column="2" FontSize="24" FontWeight="Bold" Text="URL"/>
-            <TextBlock Grid.Column="3" FontSize="24" FontWeight="Bold" Text="Notatki"/>
-            <TextBlock Grid.Column="4" FontSize="24" FontWeight="Bold" Text="Modyfikowano"/>
+            <TextBlock Grid.Column="3" FontSize="24" FontWeight="Bold" Text="Hasło"/>
+            <TextBlock Grid.Column="4" FontSize="24" FontWeight="Bold" Text="Notatki"/>
+            <TextBlock Grid.Column="5" FontSize="24" FontWeight="Bold" Text="Data"/>
+            <TextBlock Grid.Column="6" FontSize="24" FontWeight="Bold" Text="Akcje"/>
         </Grid>
     </Grid>
 </UserControl>
