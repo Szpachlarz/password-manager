@@ -55,7 +55,8 @@ namespace PasswordManager.WPF.HostBuilders
             return new UserPanelViewModel(                
                 services.GetRequiredService<ViewModelDelegateRenavigator<AddRecordViewModel>>(),
                 services.GetRequiredService<IRecordService>(),
-                services.GetRequiredService<IAccountStore>());
+                services.GetRequiredService<IAccountStore>(),
+                services.GetRequiredService<ViewModelDelegateRenavigator<UserPanelViewModel>>());
         }
 
         private static TagsViewModel CreateTagsViewModel(IServiceProvider services)

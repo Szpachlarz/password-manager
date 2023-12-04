@@ -1,6 +1,8 @@
-﻿using PasswordManager.Domain.Services.RecordServices;
+﻿using Microsoft.AspNet.Identity;
+using PasswordManager.Domain.Services.RecordServices;
 using PasswordManager.WPF.Commands;
 using PasswordManager.WPF.State.Accounts;
+using PasswordManager.WPF.State.Authenticators;
 using PasswordManager.WPF.State.Navigators;
 using System;
 using System.Collections.Generic;
@@ -32,10 +34,13 @@ namespace PasswordManager.WPF.ViewModels
 
         public ICommand LoadRecordsCommand { get; }
         public ICommand ViewAddRecordCommand { get; }
-        public UserPanelViewModel(IRenavigator renavigator, IRecordService recordService, IAccountStore accountStore)
+        public ICommand UserLogout { get; }
+        public UserPanelViewModel(IRenavigator renavigator, IRecordService recordService, IAccountStore accountStore, LoginViewModel loginViewModel, IAuthenticator authenticator)
         {
             ViewAddRecordCommand = new RenavigateCommand(renavigator);
             LoadRecordsCommand = new LoadRecordsCommand(recordService, accountStore);
+            //UserLogout = new RenavigateCommand(renavigator);
+            UserLogout = new LogoutCommand(loginViewModel, authenticator, renavigator);
         }
 
     }
