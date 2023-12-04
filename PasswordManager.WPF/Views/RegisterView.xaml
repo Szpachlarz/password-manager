@@ -14,7 +14,7 @@
         <Label Content="Nazwa użytkownika" HorizontalAlignment="Left" Margin="245,197,0,0" VerticalAlignment="Top"/>
         <Label Content="Hasło" HorizontalAlignment="Left" Margin="245,234,0,0" VerticalAlignment="Top"/>
         <Label Content="Powtórz hasło" HorizontalAlignment="Left" Margin="245,269,0,0" VerticalAlignment="Top"/>
-        <TextBox HorizontalAlignment="Center" Height="30" Margin="0,195,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="177" FontSize="18" Text="{Binding Username, UpdateSourceTrigger=PropertyChanged}"/>
+        <TextBox HorizontalAlignment="Center" Height="30" Margin="0,195,0,0" VerticalAlignment="Top" Width="177" FontSize="18" Text="{Binding Username, UpdateSourceTrigger=PropertyChanged}" MaxLength="30"/>
         <components:BindablePasswordBox HorizontalAlignment="Center" Margin="0,230,0,0" VerticalAlignment="Top" Height ="30" Width="177" Password="{Binding Password}"/>
         <components:BindablePasswordBox HorizontalAlignment="Center" Margin="0,265,0,0" VerticalAlignment="Top" Height ="30" Width="177" Password="{Binding ConfirmPassword}"/>
         <Button Content="Zarejestruj się" HorizontalAlignment="Center" Height="31" Margin="0,300,0,0" VerticalAlignment="Top" Width="176" Command="{Binding RegisterCommand}"/>
@@ -26,6 +26,7 @@
 
         <TextBlock Grid.Row="6" Margin="0,10,0,0"
                     HorizontalAlignment="Center"
+                    VerticalAlignment="Top"
                     DataContext="{Binding ErrorMessageViewModel}"
                     Foreground="DarkRed"
                     Text="{Binding Message}"
