@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:PasswordManager.WPF.Views" xmlns:components="clr-namespace:PasswordManager.WPF.Components"
+             xmlns:Components="clr-namespace:PasswordBoxMVVM.Components;assembly=PasswordBoxMVVM"
              mc:Ignorable="d" 
              d:DesignHeight="600" d:DesignWidth="1200">
     <Grid>
@@ -34,9 +35,8 @@
 
                 <!-- Prawa strona z przyciskami -->
                 <StackPanel Height="50" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Top">
+                    <Button Content="Dodaj" Margin="10" Width="78" Command="{Binding SubmitCommand}"/>
                     <Button Content="Powrót" Margin="10" Width="78" Command="{Binding ViewUserPanelCommand}"/>
-                    <Button Content="Zapisz" Margin="10" Width="78" Command="{Binding AddRecordCommand}"/>
-                    
                 </StackPanel>
             </Grid>
         </Grid>
@@ -77,7 +77,7 @@
                         <ColumnDefinition Width="4*"/>
                     </Grid.ColumnDefinitions>
                     <TextBlock Grid.Column="0" FontSize="24" TextAlignment="Right" Text="Hasło"/>
-                    <TextBox Grid.Column="1" Width="500" Text="{Binding Password, UpdateSourceTrigger=PropertyChanged}"/>
+                    <Components:BindablePasswordBox Grid.Column="1" Width="500" Password="{Binding Password, UpdateSourceTrigger=PropertyChanged}"/>
                 </Grid>
 
                 <Grid Grid.Row="3" Margin="0,0,0,10">
@@ -103,7 +103,6 @@
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="4*"/>
                     </Grid.ColumnDefinitions>
-                    <Button Content="Dodaj" Margin="10" Width="78" Command="{Binding SubmitCommand}"/>
                 </Grid>
 
             </Grid>

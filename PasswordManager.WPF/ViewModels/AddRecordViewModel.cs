@@ -130,7 +130,7 @@ namespace PasswordManager.WPF.ViewModels
         }
 
         public bool HasErrorMessage => !string.IsNullOrEmpty(ErrorMessage);
-        public bool CanSubmit => !string.IsNullOrEmpty(Title) && !string.IsNullOrEmpty(Website) && !string.IsNullOrEmpty(Username) && !string.IsNullOrEmpty(Password);
+        public bool CanSubmit => !string.IsNullOrEmpty(Title) && !string.IsNullOrEmpty(Website) && !string.IsNullOrEmpty(Username) && !string.IsNullOrEmpty(Password) /*&& Title.Length > 5 && Title.Length < 50 && Website.Length < 300 && Username.Length > 4 && Username.Length < 30 && Password.Length > 7 && Password.Length < 32*/;
 
         public ICommand SubmitCommand { get; }
         public ICommand ViewUserPanelCommand { get; }
