@@ -34,7 +34,7 @@
 
                 <!-- Prawa strona z przyciskami -->
                 <StackPanel Height="50" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Top">
-
+                    <Button Content="Powrót" Margin="10" Width="78"/>
                     <Button Content="Powrót" Margin="10" Width="78" Command="{Binding ViewUserPanelCommand}"/>
                     <Button Content="Powrót" Margin="10" Width="78" Command="{Binding AddRecordCommand}"/>
                     
