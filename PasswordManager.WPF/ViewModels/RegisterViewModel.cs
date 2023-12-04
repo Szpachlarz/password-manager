@@ -59,7 +59,11 @@ namespace PasswordManager.WPF.ViewModels
 
         public bool CanRegister => !string.IsNullOrEmpty(Username) &&
             !string.IsNullOrEmpty(Password) &&
-            !string.IsNullOrEmpty(ConfirmPassword);
+            !string.IsNullOrEmpty(ConfirmPassword) &&
+            Username.Length > 4 &&
+            Username.Length < 30 &&
+            Password.Length > 7 &&
+            Password.Length < 50;
 
         public ICommand RegisterCommand { get; }
 

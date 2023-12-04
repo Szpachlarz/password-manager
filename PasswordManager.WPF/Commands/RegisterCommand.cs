@@ -48,13 +48,25 @@ namespace PasswordManager.WPF.Commands
                         _registerRenavigator.Renavigate();
                         break;
                     case RegistrationResult.PasswordsDoNotMatch:
-                        _registerViewModel.ErrorMessage = "Password does not match confirm password.";
+                        _registerViewModel.ErrorMessage = "Podane hasła nie są takie same.";
                         break;
                     case RegistrationResult.UsernameAlreadyExists:
-                        _registerViewModel.ErrorMessage = "An account for this username already exists.";
+                        _registerViewModel.ErrorMessage = "Użytkownik o podanej nazwie już istnieje.";
+                        break;
+                    case RegistrationResult.UsernameTooShort:
+                        _registerViewModel.ErrorMessage = "Nazwa użytkownika jest zbyt krótka.";
+                        break;
+                    case RegistrationResult.UsernameTooLong:
+                        _registerViewModel.ErrorMessage = "Nazwa użytkownika jest zbyt długa.";
+                        break;
+                    case RegistrationResult.PasswordTooShort:
+                        _registerViewModel.ErrorMessage = "Hasło jest zbyt krótkie.";
+                        break;
+                    case RegistrationResult.PasswordTooLong:
+                        _registerViewModel.ErrorMessage = "Hasło jest zbyt długie.";
                         break;
                     default:
-                        _registerViewModel.ErrorMessage = "Registration failed.";
+                        _registerViewModel.ErrorMessage = "Błąd rejestracji.";
                         break;
                 }
             }

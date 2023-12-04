@@ -11,7 +11,11 @@ namespace PasswordManager.Domain.Services.AuthenticationServices
     {
         Success,
         PasswordsDoNotMatch,
-        UsernameAlreadyExists
+        UsernameAlreadyExists,
+        UsernameTooShort,
+        UsernameTooLong,
+        PasswordTooShort,
+        PasswordTooLong
     }
 
     public interface IAuthenticationService
