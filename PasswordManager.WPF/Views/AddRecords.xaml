@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:PasswordManager.WPF.Views" xmlns:components="clr-namespace:PasswordManager.WPF.Components"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="600" d:DesignWidth="1200">
     <Grid>
         <!--<TextBlock Grid.Row="1" Margin="0 10 0 0"
             HorizontalAlignment="Center"
@@ -34,9 +34,8 @@
 
                 <!-- Prawa strona z przyciskami -->
                 <StackPanel Height="50" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Top">
-                    <Button Content="Powrót" Margin="10" Width="78"/>
                     <Button Content="Powrót" Margin="10" Width="78" Command="{Binding ViewUserPanelCommand}"/>
-                    <Button Content="Powrót" Margin="10" Width="78" Command="{Binding AddRecordCommand}"/>
+                    <Button Content="Zapisz" Margin="10" Width="78" Command="{Binding AddRecordCommand}"/>
                     
                 </StackPanel>
             </Grid>
