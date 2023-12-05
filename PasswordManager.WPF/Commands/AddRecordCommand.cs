@@ -1,4 +1,5 @@
-﻿using PasswordManager.Domain.Models;
+﻿using Microsoft.EntityFrameworkCore.Migrations.Operations;
+using PasswordManager.Domain.Models;
 using PasswordManager.Domain.Services.RecordServices;
 using PasswordManager.WPF.State.Accounts;
 using PasswordManager.WPF.ViewModels;
@@ -8,6 +9,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Controls;
 
 namespace PasswordManager.WPF.Commands
 {
@@ -54,12 +56,16 @@ namespace PasswordManager.WPF.Commands
             string username = _addRecordViewModel.Username;
             string password = _addRecordViewModel.Password;
             string description = _addRecordViewModel.Description;
-
             try
             {
                 Account account = await _recordService.AddRecord(_accountStore.CurrentUser, title, website, username, password, description);
 
                 _accountStore.CurrentUser = account;
+                _addRecordViewModel.Title = string.Empty;
+                _addRecordViewModel.Website = string.Empty;
+                _addRecordViewModel.Username = string.Empty;
+                _addRecordViewModel.Password = string.Empty;
+                _addRecordViewModel.Description = string.Empty;
             }
             catch (Exception)
             {
