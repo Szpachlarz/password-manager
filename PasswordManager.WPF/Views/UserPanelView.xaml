@@ -12,7 +12,10 @@
         <Grid Margin="0 10 0 0 ">
             <!-- Lewa strona z nazwą użytkownika -->
             <StackPanel Height="50" Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Top">
-                <TextBlock Text="{Binding Username, StringFormat='Witaj {0}!'}" Margin="10" FontSize="24"/>
+                <TextBlock Margin="10" FontSize="24">
+                    <Run>Witaj </Run>
+                    <Run FontWeight="Bold" Text="{Binding Username, StringFormat='&#x200B;{0}!'}" />
+                </TextBlock>
                 <TextBlock x:Name="usernameLabel" Margin="10" FontSize="24"/>
             </StackPanel>
 
