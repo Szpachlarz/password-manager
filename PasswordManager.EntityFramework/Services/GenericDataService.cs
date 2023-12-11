@@ -25,6 +25,26 @@ namespace PasswordManager.EntityFramework.Services
             return await _nonQueryDataService.Create(entity);
         }
 
+        public Task<T> AddRecord(Account account, Record record)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<T> AddRecord(Record record)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<T> UpdateRecord(T entity, Record record)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<T> DeleteRecord(T entity, Record record)
+        {
+            throw new NotImplementedException();
+        }
+
         public async Task<bool> Delete(int id)
         {
             return await _nonQueryDataService.Delete(id);
@@ -58,7 +78,12 @@ namespace PasswordManager.EntityFramework.Services
             throw new NotImplementedException();
         }
 
-        public Task<Tuple<string, string>> GetAES(int id)
+        public Task<string> GetAESKey(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<string> GetAESIV(int id)
         {
             throw new NotImplementedException();
         }

@@ -40,45 +40,60 @@ namespace PasswordManager.EntityFramework.Services.Common
                 return entity;
             }
         }
-        
-        public async Task<T> UpdateRecord(int id, ICollection<Record> records)
+        public async Task<T> AddRecord(Account account,Record record)
         {
             using (PasswordManagerDbContext context = _contextFactory.CreateDbContext())
             {
-                
-                var oldUser = await context.Accounts.Include(u => u.Records).FirstOrDefaultAsync(u => u.Id == id);
+                var userAcc = context.Accounts.Include(x => x.Records).SingleOrDefault(x => x.Id == account.Id);
 
-                if (oldUser == null)
+                if (userAcc != null)
+                {
+                    userAcc.Records.Add(record);
+
+                    await context.SaveChangesAsync();
+                }
+                
+                return null;
+            }
+        }
+        public async Task<T> DeleteRecord(Account account, Record record)
+        {
+            using (PasswordManagerDbContext context = _contextFactory.CreateDbContext())
+            {
+                var userRecord = context.Records.Include(x => x.Account).FirstOrDefault(x=> x.Id == record.Id);
+
+                if (userRecord == null)
                 {
                     return null;
                 }
 
-                var oldUserRecords = oldUser.Records; 
-                var valuesToAdd = records.Except(oldUserRecords).ToList();
-                var valuesToRemove = oldUserRecords.Except(records).ToList();
-                foreach (var valueToAdd in valuesToAdd)
-                {
-                    Record record = new Record()
-                    {
-                        Account = oldUser,
-                        Title = valueToAdd.Title,
-                        Website = valueToAdd.Website,
-                        Username = valueToAdd.Username,
-                        Password = valueToAdd.Password,
-                        Description = valueToAdd.Description,
-                        Created = DateTime.Now
-                    };
-                    context.Add(record);
-                }
+                context.Remove(userRecord);
+                
+                await context.SaveChangesAsync();
 
-                foreach (var valueToRemove in valuesToRemove)
+                return null;
+            }
+        }
+        public async Task<T> UpdateRecord(Account account, Record record)
+        {
+            using (PasswordManagerDbContext context = _contextFactory.CreateDbContext())
+            {
+                
+                var userRecord = context.Records.Include(x => x.Account).FirstOrDefault(x=> x.Id == record.Id);
+
+                if (userRecord == null)
                 {
-                    var entityToRemove = context.Records.FirstOrDefault(e => e.Id == valueToRemove.Id);
-                    if (entityToRemove != null)
-                    {
-                        context.Records.Remove(entityToRemove);
-                    }
+                    return null;
                 }
+                
+                userRecord.Title = record.Title;
+                userRecord.Website = record.Website;
+                userRecord.Username = record.Username;
+                userRecord.Password = record.Password;
+                userRecord.Description = record.Description;
+                userRecord.Created = record.Created;
+
+                context.Update(userRecord);
 
                 await context.SaveChangesAsync();
 
@@ -109,15 +124,25 @@ namespace PasswordManager.EntityFramework.Services.Common
             }
         }
         
-        public Task<Tuple<string, string>> GetAES(int id)
+        public async Task<string> GetAESKey(int id)
         {
             using (PasswordManagerDbContext context = _contextFactory.CreateDbContext())
             {
                 var key = context.Users.FirstOrDefault(x=> x.Id == id).AesKey;
-                var iv = context.Users.FirstOrDefault(x=> x.Id == id).AesIV;
-                var aes = new Tuple<string, string>(key, iv);
+
                 
-                return Task.FromResult(aes);
+                return key;
+            }
+        }
+        
+        public async Task<string> GetAESIV(int id)
+        {
+            using (PasswordManagerDbContext context = _contextFactory.CreateDbContext())
+            {
+                var iv = context.Records.FirstOrDefault(x => x.Id == id).AES_IV;
+
+                
+                return iv;
             }
         }
     }

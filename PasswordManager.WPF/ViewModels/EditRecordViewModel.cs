@@ -159,9 +159,10 @@ namespace PasswordManager.WPF.ViewModels
 
         private async Task<string> FillPassword(IRecordService recordService, IAccountStore accountStore)
         {
-            var aes = await recordService.GetAES(accountStore.CurrentUser);
+            var aesKey = await recordService.GetAESKey(accountStore.CurrentUser);
+            var aesIv = await recordService.GetAESIV(accountStore.SelectedRecord.Id);
             var password = await recordService.GetPasswordById(accountStore.SelectedRecord.Id);
-            var passwordResult = EncryptProvider.AESDecrypt(password, aes.Item1, aes.Item2);
+            var passwordResult = EncryptProvider.AESDecrypt(password, aesKey, aesIv);
             return passwordResult;
         }
     }

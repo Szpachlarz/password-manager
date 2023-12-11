@@ -81,14 +81,29 @@ namespace PasswordManager.EntityFramework.Services
             return await _nonQueryDataService.Update(id, entity);
         }
         
-        public async Task<Account> UpdateRecord(int id, Account entity)
+        public async Task<Account> DeleteRecord(Account entity, Record record)
         {
-            return await _nonQueryDataService.UpdateRecord(id, entity.Records);
+            return await _nonQueryDataService.DeleteRecord(entity, record);
         }
 
-        public async Task<Tuple<string, string>> GetAES(int id)
+        public async Task<Account> AddRecord(Account account, Record record)
         {
-            return await _nonQueryDataService.GetAES(id);
+            return await _nonQueryDataService.AddRecord(account, record);
+        }
+        
+        public async Task<Account> UpdateRecord(Account entity, Record record)
+        {
+            return await _nonQueryDataService.UpdateRecord(entity, record);
+        }
+
+        public async Task<string> GetAESKey(int id)
+        {
+            return await _nonQueryDataService.GetAESKey(id);
+        }
+        
+        public async Task<string> GetAESIV(int id)
+        {
+            return await _nonQueryDataService.GetAESIV(id);
         }
 
         public async Task<string> GetPassword(int id)

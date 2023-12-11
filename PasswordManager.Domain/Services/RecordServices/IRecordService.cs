@@ -12,11 +12,12 @@ namespace PasswordManager.Domain.Services.RecordServices
         Task<IEnumerable<Record>> GetRecordsById(Account account);
         Task<string> GetPasswordById(int id);
 
-        Task<Account> AddRecord(Account user, string title, string website, string username, string password, string description);
+        Task<Account> AddRecord(Account user, string title, string website, string username, string password, string description, string AESIV);
 
-        Task<Account> UpdateRecord(int recordId, Account user, string title, string website, string username, string password, string description);
+        Task<Account> UpdateRecord(int recordId, Account user, string title, string website, string username, string password, string description, DateTime created);
 
         Task<Account> DeleteRecord(int recordId, Account user);
-        Task<Tuple<string, string>> GetAES(Account user);
+        Task<string> GetAESKey(Account user);
+        Task<string> GetAESIV(int id);
     }
 }

@@ -5,21 +5,35 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:PasswordManager.WPF.Views"
              xmlns:components="clr-namespace:PasswordBoxMVVM.Components;assembly=PasswordBoxMVVM"
-             xmlns:Components="clr-namespace:PasswordManager.WPF.Components" xmlns:Components1="clr-namespace:PasswordBoxMVVM.Components;assembly=PasswordBoxMVVM" x:Class="PasswordManager.WPF.Views.RegisterView"
+             xmlns:Components="clr-namespace:PasswordManager.WPF.Components" xmlns:Components1="clr-namespace:PasswordBoxMVVM.Components;assembly=PasswordBoxMVVM"
+             xmlns:hc="https://handyorg.github.io/handycontrol"
+             x:Class="PasswordManager.WPF.Views.RegisterView"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
-
-        <TextBlock HorizontalAlignment="Center" Margin="0,88,0,0" TextWrapping="Wrap" Text="Rejestracja nowego użytkownika" VerticalAlignment="Top" FontSize="36"/>
-        <Label Content="Nazwa użytkownika" HorizontalAlignment="Left" Margin="245,197,0,0" VerticalAlignment="Top"/>
-        <Label Content="Hasło" HorizontalAlignment="Left" Margin="245,234,0,0" VerticalAlignment="Top"/>
-        <Label Content="Powtórz hasło" HorizontalAlignment="Left" Margin="245,269,0,0" VerticalAlignment="Top"/>
-        <TextBox HorizontalAlignment="Center" Height="30" Margin="0,195,0,0" VerticalAlignment="Top" Width="177" FontSize="18" Text="{Binding Username, UpdateSourceTrigger=PropertyChanged}" MaxLength="30"/>
-        <components:BindablePasswordBox HorizontalAlignment="Center" Margin="0,230,0,0" VerticalAlignment="Top" Height ="30" Width="177" Password="{Binding Password}"/>
-        <components:BindablePasswordBox HorizontalAlignment="Center" Margin="0,265,0,0" VerticalAlignment="Top" Height ="30" Width="177" Password="{Binding ConfirmPassword}"/>
-        <Button Content="Zarejestruj się" HorizontalAlignment="Center" Height="31" Margin="0,300,0,0" VerticalAlignment="Top" Width="176" Command="{Binding RegisterCommand}" MouseEnter="Button_MouseEnter"
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <TextBlock HorizontalAlignment="Center" Grid.Row="0" Margin="0 65 0 0" TextWrapping="Wrap" Text="Rejestracja nowego użytkownika" VerticalAlignment="Top" FontSize="36"/>
+        <Label Content="Nazwa użytkownika" Margin="0 65 0 0" HorizontalAlignment="Center" Grid.Row="1" VerticalAlignment="Top" BorderThickness="0"/>
+        <TextBox HorizontalAlignment="Center" Height="30" Grid.Row="2" VerticalAlignment="Top" Width="177" FontSize="18" Text="{Binding Username, UpdateSourceTrigger=PropertyChanged}" MaxLength="30"/>
+        <Label Content="Hasło" HorizontalAlignment="Center" Grid.Row="3" VerticalAlignment="Top" BorderThickness="0"/>
+        <components:BindablePasswordBox HorizontalAlignment="Center" Grid.Row="4" VerticalAlignment="Top" Height ="30" Width="177" Password="{Binding Password}"/>
+        <Label Content="Powtórz hasło" HorizontalAlignment="Center" Grid.Row="5" VerticalAlignment="Top" BorderThickness="0"/>
+        <components:BindablePasswordBox HorizontalAlignment="Center" Grid.Row="6" VerticalAlignment="Top" Height ="30" Width="177" Password="{Binding ConfirmPassword}"/>
+        <Button Content="Zarejestruj się" HorizontalAlignment="Center" Margin="0 25 0 0" Height="31" Grid.Row="7" VerticalAlignment="Top" Width="176" Command="{Binding RegisterCommand}" MouseEnter="Button_MouseEnter"
                 MouseLeave="Button_MouseLeave"/>
-        <Button Content="Masz już konto? Zaloguj się" HorizontalAlignment="Center" Margin="0,382,0,0" VerticalAlignment="Top" Command="{Binding ViewLoginCommand}" Width="176" Height="31" MouseEnter="Button_MouseEnter"
+        <hc:Divider Grid.Row="8" Margin="0 10" Width="125"/>
+        <Button Content="Masz już konto? Zaloguj się" HorizontalAlignment="Center" Grid.Row="9" VerticalAlignment="Top" Command="{Binding ViewLoginCommand}" Width="176" Height="31" MouseEnter="Button_MouseEnter"
                 MouseLeave="Button_MouseLeave"/>
 
         <!--<UserControl.Resources>

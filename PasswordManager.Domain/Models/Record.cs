@@ -13,6 +13,7 @@ namespace PasswordManager.Domain.Models
         public string Website { get; set; }
         public string Username { get; set; }
         public string Password { get; set; }
+        public string AES_IV { get; set; }
         public string Description { get; set; }
         public DateTime Created { get; set; }
         //public Guid UserId { get; set; }

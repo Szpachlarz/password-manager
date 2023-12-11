@@ -62,13 +62,11 @@ namespace PasswordManager.Domain.Services.AuthenticationServices
                 var aesKey = EncryptProvider.CreateAesKey();
 
                 var key = aesKey.Key;
-                var iv = aesKey.IV;
                 User user = new User()
                 {
                     Username = username,
                     PasswordHash = hashedPassword,
-                    AesKey = key,
-                    AesIV = iv
+                    AesKey = key
                 };
 
                 Account account = new Account()

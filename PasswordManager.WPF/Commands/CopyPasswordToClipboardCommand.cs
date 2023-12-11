@@ -26,10 +26,11 @@ public class CopyPasswordToClipboardCommand : AsyncCommandBase
 
     public override async Task ExecuteAsync(object parameter)
     {
-        var aes = await _recordService.GetAES(_accountStore.CurrentUser);
+        var key = await _recordService.GetAESKey(_accountStore.CurrentUser);
         var record = parameter as UserRecord;
+        var iv = await _recordService.GetAESIV(record.Id);
         var password = await _recordService.GetPasswordById(record.Id);
-        Clipboard.SetText(EncryptProvider.AESDecrypt(password, aes.Item1, aes.Item2));
+        Clipboard.SetText(EncryptProvider.AESDecrypt(password, key, iv));
         Growl.Success("Skopiowano hasło do schowka!");
     }
 }

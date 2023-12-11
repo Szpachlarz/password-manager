@@ -13,6 +13,7 @@
                 <hc:Theme/>
                 
             </ResourceDictionary.MergedDictionaries>
+            
             <Style x:Key="DataGridTextCenterColumnStyle" TargetType="DataGridCell" BasedOn="{StaticResource DataGridCellStyle}">
                 <Setter Property="HorizontalContentAlignment" Value="Center"/>
             </Style>
@@ -47,6 +48,7 @@
                     </Setter.Value>
                 </Setter>
             </Style>
+            
             <DataTemplate DataType="{x:Type viewmodels:LoginViewModel}">
                 <views:LoginView />
             </DataTemplate>

@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using PasswordManager.EntityFramework;
 
@@ -10,9 +11,11 @@ using PasswordManager.EntityFramework;
 namespace PasswordManager.EntityFramework.Migrations
 {
     [DbContext(typeof(PasswordManagerDbContext))]
-    partial class PasswordManagerDbContextModelSnapshot : ModelSnapshot
+    [Migration("20231211001447_AddedColsForAES")]
+    partial class AddedColsForAES
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "7.0.14");
@@ -38,10 +41,6 @@ namespace PasswordManager.EntityFramework.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
-
-                    b.Property<string>("AES_IV")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
 
                     b.Property<int>("AccountId")
                         .HasColumnType("INTEGER");
@@ -82,9 +81,13 @@ namespace PasswordManager.EntityFramework.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<string>("AesKey")
+                    b.Property<byte[]>("AesIV")
                         .IsRequired()
-                        .HasColumnType("TEXT");
+                        .HasColumnType("BLOB");
+
+                    b.Property<byte[]>("AesKey")
+                        .IsRequired()
+                        .HasColumnType("BLOB");
 
                     b.Property<string>("PasswordHash")
                         .IsRequired()
