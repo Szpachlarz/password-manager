@@ -10,6 +10,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Controls;
+using HandyControl.Controls;
+using NETCore.Encrypt;
 
 namespace PasswordManager.WPF.Commands
 {
@@ -54,7 +56,8 @@ namespace PasswordManager.WPF.Commands
             string title = _addRecordViewModel.Title;
             string website = _addRecordViewModel.Website;
             string username = _addRecordViewModel.Username;
-            string password = _addRecordViewModel.Password;
+            var aes = await _recordService.GetAES(_accountStore.CurrentUser);
+            string password = EncryptProvider.AESEncrypt(_addRecordViewModel.Password, aes.Item1, aes.Item2);
             string description = _addRecordViewModel.Description;
             try
             {
@@ -66,10 +69,11 @@ namespace PasswordManager.WPF.Commands
                 _addRecordViewModel.Username = string.Empty;
                 _addRecordViewModel.Password = string.Empty;
                 _addRecordViewModel.Description = string.Empty;
+                Growl.Success("Pomyślnie dodano konto do bazdy danych!");
             }
             catch (Exception)
             {
-                _addRecordViewModel.ErrorMessage = "Operacja nie powiodła się";
+                Growl.Error("Operacja nie powiodła się");
             }
             finally
             {

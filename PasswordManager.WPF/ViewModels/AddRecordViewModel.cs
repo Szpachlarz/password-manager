@@ -139,7 +139,6 @@ namespace PasswordManager.WPF.ViewModels
         {
             //SubmitCommand = submitCommand;
             //ViewUserPanelCommand = cancelCommand;
-
             ViewUserPanelCommand = new RenavigateCommand(userPanelRenavigator);
             SubmitCommand = new AddRecordCommand(this, recordService, accountStore);
         }
