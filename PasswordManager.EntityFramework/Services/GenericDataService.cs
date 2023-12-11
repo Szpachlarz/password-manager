@@ -52,5 +52,20 @@ namespace PasswordManager.EntityFramework.Services
         {
             return await _nonQueryDataService.Update(id, entity);
         }
+
+        public Task<T> UpdateRecord(int id, T entity)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<Tuple<string, string>> GetAES(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<string> GetPassword(int id)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
