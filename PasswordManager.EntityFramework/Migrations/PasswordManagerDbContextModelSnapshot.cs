@@ -39,6 +39,10 @@ namespace PasswordManager.EntityFramework.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
+                    b.Property<string>("AES_IV")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
                     b.Property<int>("AccountId")
                         .HasColumnType("INTEGER");
 
@@ -77,10 +81,6 @@ namespace PasswordManager.EntityFramework.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
-
-                    b.Property<string>("AesIV")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
 
                     b.Property<string>("AesKey")
                         .IsRequired()
