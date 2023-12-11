@@ -9,21 +9,12 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
-        <Label 
-               Margin="2" 
-               Content="{Binding  Test, UpdateSourceTrigger=PropertyChanged}" 
-               VerticalContentAlignment="Center"
-               VerticalAlignment="Center"
-               Background="Transparent"
-               BorderBrush="Transparent"
-               BorderThickness="0"/>
         <DataGrid ItemsSource="{Binding RecordsList}" AutoGenerateColumns="False" Margin="20" ColumnHeaderStyle="{StaticResource ColumnHeaderStyle1}" IsReadOnly="True" SelectionMode="Single" RowStyle="{StaticResource DataGridRowStyleCustom}">
-
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Tytuł" CellStyle="{StaticResource DataGridTextCenterColumnStyle}" CanUserSort="False"
                                     Binding="{Binding Title, Mode=OneWay}" Width="100" Foreground="Black"/>
                 <DataGridTextColumn Header="Login" CellStyle="{StaticResource DataGridTextCenterColumnStyle}" CanUserSort="False" Binding="{Binding Username, Mode=OneWay}" Width="100" Foreground="Black"/>
-                <DataGridTemplateColumn Header="Url" CanUserSort="False" Width="375">
+                <DataGridTemplateColumn Header="Url" CanUserSort="False" Width="350">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <TextBlock Text="{Binding Website, Mode=OneWay}" 
@@ -47,13 +38,18 @@
                                       RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}"
                                         CommandParameter="{Binding}"
                                         MouseEnter="Button_MouseEnter"
-                                        MouseLeave="Button_MouseLeave"/>
+                                        MouseLeave="Button_MouseLeave">
+                                    <hc:Poptip.Instance>
+                                        <hc:Poptip Content="Kopiuj do schowka" Foreground="Black" PlacementType="TopRight" HorizontalOffset="-79" VerticalOffset="-5" Delay="0.2"/>
+                                    </hc:Poptip.Instance>
+                                    <Image Source="/Resources/clipboard.png"></Image>
+                                </Button>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
                 <DataGridTextColumn Header="Notatki" CellStyle="{StaticResource DataGridTextCenterColumnStyle}" CanUserSort="False" Binding="{Binding Description, Mode=OneWay}" Width="100" Foreground="Black"/>
                 <DataGridTextColumn Header="Data" CellStyle="{StaticResource DataGridTextCenterColumnStyle}" CanUserSort="False" Binding="{Binding Created, Mode=OneWay}" Width="200" Foreground="Black"/>
-                <DataGridTemplateColumn Header="Akcje" Width="100" CellStyle="{StaticResource DataGridTextCenterColumnStyle}">
+                <DataGridTemplateColumn Header="Akcje" Width="150" CellStyle="{StaticResource DataGridTextCenterColumnStyle}">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <StackPanel Orientation="Horizontal">
@@ -62,13 +58,23 @@
                                       RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}"
                                         CommandParameter="{Binding}"
                                         MouseEnter="Button_MouseEnter"
-                                        MouseLeave="Button_MouseLeave"/>
+                                        MouseLeave="Button_MouseLeave">
+                                <Image Source="/Resources/editIcon.png"></Image>
+                                    <hc:Poptip.Instance>
+                                        <hc:Poptip Content="Edytuj" Foreground="Black" PlacementType="TopRight" HorizontalOffset="-46" VerticalOffset="-5" Delay="0.2"/>
+                                    </hc:Poptip.Instance>
+                                </Button>
                                 <Button Style="{StaticResource ButtonDanger}" Margin="10 0 0 0" 
                                         Command="{Binding DataContext.DeleteRecordCommand, 
                                       RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}"
                                         CommandParameter="{Binding}"
                                         MouseEnter="Button_MouseEnter"
-                                        MouseLeave="Button_MouseLeave"/>
+                                        MouseLeave="Button_MouseLeave">
+                                    <hc:Poptip.Instance>
+                                        <hc:Poptip Content="Usuń" Foreground="Black" PlacementType="TopRight" HorizontalOffset="-43" VerticalOffset="-5" Delay="0.2"/>
+                                    </hc:Poptip.Instance>
+                                    <Image Source="/Resources/trash.png"></Image>
+                                </Button>
                             </StackPanel>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
