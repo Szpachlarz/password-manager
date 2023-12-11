@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using NETCore.Encrypt;
 
 namespace PasswordManager.Domain.Services.AuthenticationServices
 {
@@ -58,18 +59,24 @@ namespace PasswordManager.Domain.Services.AuthenticationServices
             if (result == RegistrationResult.Success)
             {
                 string hashedPassword = _passwordHasher.HashPassword(password);
+                var aesKey = EncryptProvider.CreateAesKey();
 
+                var key = aesKey.Key;
+                var iv = aesKey.IV;
                 User user = new User()
                 {
                     Username = username,
                     PasswordHash = hashedPassword,
+                    AesKey = key,
+                    AesIV = iv
                 };
 
                 Account account = new Account()
                 {
                     AccountHolder = user
                 };
-
+                
+                
                 await _accountService.Create(account);
             }
 

@@ -4,33 +4,76 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:PasswordManager.WPF.Components"
+             xmlns:hc="https://handyorg.github.io/handycontrol"
+             xmlns:viewModels="clr-namespace:PasswordManager.WPF.ViewModels"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="auto"/>
-            <RowDefinition Height="auto"/>
-            <RowDefinition Height="auto"/>
-            <RowDefinition Height="auto"/>
-        </Grid.RowDefinitions>
+        <Label 
+               Margin="2" 
+               Content="{Binding  Test, UpdateSourceTrigger=PropertyChanged}" 
+               VerticalContentAlignment="Center"
+               VerticalAlignment="Center"
+               Background="Transparent"
+               BorderBrush="Transparent"
+               BorderThickness="0"/>
+        <DataGrid ItemsSource="{Binding RecordsList}" AutoGenerateColumns="False" Margin="20" ColumnHeaderStyle="{StaticResource ColumnHeaderStyle1}" IsReadOnly="True" SelectionMode="Single" RowStyle="{StaticResource DataGridRowStyleCustom}">
 
-        <Grid Grid.Row="0">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-            </Grid.ColumnDefinitions>
-            <TextBlock Grid.Column="0" FontSize="24" FontWeight="Bold" Text="Tytuł"/>
-            <TextBlock Grid.Column="1" FontSize="24" FontWeight="Bold" Text="Login"/>
-            <TextBlock Grid.Column="2" FontSize="24" FontWeight="Bold" Text="URL"/>
-            <TextBlock Grid.Column="3" FontSize="24" FontWeight="Bold" Text="Hasło"/>
-            <TextBlock Grid.Column="4" FontSize="24" FontWeight="Bold" Text="Notatki"/>
-            <TextBlock Grid.Column="5" FontSize="24" FontWeight="Bold" Text="Data"/>
-            <TextBlock Grid.Column="6" FontSize="24" FontWeight="Bold" Text="Akcje"/>
-        </Grid>
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Tytuł" CellStyle="{StaticResource DataGridTextCenterColumnStyle}" CanUserSort="False"
+                                    Binding="{Binding Title, Mode=OneWay}" Width="100" Foreground="Black"/>
+                <DataGridTextColumn Header="Login" CellStyle="{StaticResource DataGridTextCenterColumnStyle}" CanUserSort="False" Binding="{Binding Username, Mode=OneWay}" Width="100" Foreground="Black"/>
+                <DataGridTemplateColumn Header="Url" CanUserSort="False" Width="375">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding Website, Mode=OneWay}" 
+                                       Foreground="{Binding ForegroundColor}" 
+                                       TextDecorations="{Binding TextDecoration}"
+                                       HorizontalAlignment="Center"
+                                       ForceCursor="True"
+                                       Cursor="Arrow"
+                                       MouseEnter="TextBlock_MouseEnter"
+                                       MouseLeave="TextBlock_MouseLeave"
+                                       MouseLeftButtonDown="TextBlock_MouseLeftButtonDown">
+                            </TextBlock>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn Header="Hasło" Width="100" CellStyle="{StaticResource DataGridTextCenterColumnStyle}">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                                <Button Style="{StaticResource ButtonInfo}" Margin="0 0 0 0" 
+                                        Command="{Binding DataContext.CopyPasswordToClipboardCommand, 
+                                      RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}"
+                                        CommandParameter="{Binding}"
+                                        MouseEnter="Button_MouseEnter"
+                                        MouseLeave="Button_MouseLeave"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTextColumn Header="Notatki" CellStyle="{StaticResource DataGridTextCenterColumnStyle}" CanUserSort="False" Binding="{Binding Description, Mode=OneWay}" Width="100" Foreground="Black"/>
+                <DataGridTextColumn Header="Data" CellStyle="{StaticResource DataGridTextCenterColumnStyle}" CanUserSort="False" Binding="{Binding Created, Mode=OneWay}" Width="200" Foreground="Black"/>
+                <DataGridTemplateColumn Header="Akcje" Width="100" CellStyle="{StaticResource DataGridTextCenterColumnStyle}">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal">
+                                <Button Style="{StaticResource ButtonWarning}" Margin="0 0 0 0" 
+                                        Command="{Binding DataContext.MoveToEditRecordCommand, 
+                                      RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}"
+                                        CommandParameter="{Binding}"
+                                        MouseEnter="Button_MouseEnter"
+                                        MouseLeave="Button_MouseLeave"/>
+                                <Button Style="{StaticResource ButtonDanger}" Margin="10 0 0 0" 
+                                        Command="{Binding DataContext.DeleteRecordCommand, 
+                                      RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}"
+                                        CommandParameter="{Binding}"
+                                        MouseEnter="Button_MouseEnter"
+                                        MouseLeave="Button_MouseLeave"/>
+                            </StackPanel>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
     </Grid>
 </UserControl>

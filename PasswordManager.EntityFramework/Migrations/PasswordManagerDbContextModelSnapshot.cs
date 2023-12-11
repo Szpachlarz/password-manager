@@ -78,6 +78,14 @@ namespace PasswordManager.EntityFramework.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
+                    b.Property<string>("AesIV")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("AesKey")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
                     b.Property<string>("PasswordHash")
                         .IsRequired()
                         .HasColumnType("TEXT");

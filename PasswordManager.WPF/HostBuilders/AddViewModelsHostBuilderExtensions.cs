@@ -11,6 +11,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using PasswordManager.Domain.Models;
 
 namespace PasswordManager.WPF.HostBuilders
 {
@@ -27,12 +28,14 @@ namespace PasswordManager.WPF.HostBuilders
                 services.AddSingleton<CreateViewModel<LoginViewModel>>(services => () => CreateLoginViewModel(services));
                 services.AddSingleton<CreateViewModel<RegisterViewModel>>(services => () => CreateRegisterViewModel(services));
                 services.AddSingleton<CreateViewModel<AddRecordViewModel>>(services => () => CreateAddRecordViewModel(services));
+                services.AddSingleton<CreateViewModel<EditRecordViewModel>>(services => () => CreateEditRecordViewModel(services));
                 services.AddSingleton<CreateViewModel<TagsViewModel>>(services => () => CreateTagsViewModel(services));
 
                 services.AddSingleton<IViewModelFactory, ViewModelFactory>();
 
                 services.AddSingleton<ViewModelDelegateRenavigator<UserPanelViewModel>>();
                 services.AddSingleton<ViewModelDelegateRenavigator<AddRecordViewModel>>();
+                services.AddSingleton<ViewModelDelegateRenavigator<EditRecordViewModel>>();
                 services.AddSingleton<ViewModelDelegateRenavigator<LoginViewModel>>();
                 services.AddSingleton<ViewModelDelegateRenavigator<RegisterViewModel>>();
                 services.AddSingleton<ViewModelDelegateRenavigator<TagsViewModel>>();
@@ -49,11 +52,20 @@ namespace PasswordManager.WPF.HostBuilders
                 services.GetRequiredService<IRecordService>(),
                 services.GetRequiredService<ViewModelDelegateRenavigator<UserPanelViewModel>>());
         }
-
+        private static EditRecordViewModel CreateEditRecordViewModel(IServiceProvider services)
+        {
+            return new EditRecordViewModel(
+                //services.GetRequiredService<RecordFormViewModel>(),
+                services.GetRequiredService<IAccountStore>(),
+                services.GetRequiredService<IRecordService>(),
+                services.GetRequiredService<ViewModelDelegateRenavigator<UserPanelViewModel>>());
+        }
+        
         private static UserPanelViewModel CreateUserPanelViewModel(IServiceProvider services)
         {
             return new UserPanelViewModel(                
                 services.GetRequiredService<ViewModelDelegateRenavigator<AddRecordViewModel>>(),
+                services.GetRequiredService<ViewModelDelegateRenavigator<EditRecordViewModel>>(),
                 services.GetRequiredService<IRecordService>(),
                 services.GetRequiredService<IAccountStore>(),
                 services.GetRequiredService<IAuthenticator>(),

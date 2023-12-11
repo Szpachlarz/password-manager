@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace PasswordManager.WPF.Views
 {
     /// <summary>
-    /// Interaction logic for LoginView.xaml
+    /// Interaction logic for AddRecords.xaml
     /// </summary>
-    public partial class LoginView : UserControl
+    public partial class AddRecordsView : UserControl
     {
-        public LoginView()
+        public AddRecordsView()
         {
             InitializeComponent();
         }

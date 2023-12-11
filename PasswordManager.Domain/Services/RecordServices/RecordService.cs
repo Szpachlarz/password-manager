@@ -18,6 +18,12 @@ namespace PasswordManager.Domain.Services.RecordServices
             _dataService = dataService;
         }
 
+        public async Task<string> GetPasswordById(int id)
+        {
+            var password = await _dataService.GetPassword(id);
+            return password;
+        }
+
         public async Task<Account> AddRecord(Account account, string title, string website, string username, string password, string description)
         {
             Record newRecord = new Record()
@@ -43,10 +49,16 @@ namespace PasswordManager.Domain.Services.RecordServices
             if (deleteRecord != null)
             {
                 account.Records.Remove(deleteRecord);
-                await _dataService.Update(account.Id, account);
+                await _dataService.UpdateRecord(account.Id, account);
             }
 
             return account;
+        }
+
+        public async Task<Tuple<string, string>> GetAES(Account user)
+        {
+            var aes = await _dataService.GetAES(user.Id);
+            return aes;
         }
 
         public async Task<Account> UpdateRecord(int recordId, Account account, string title, string website, string username, string password, string description)
@@ -74,7 +86,16 @@ namespace PasswordManager.Domain.Services.RecordServices
 
             if (userAccount != null)
             {
-                return userAccount.Records;
+                return userAccount.Records.Select(r=> new Record()
+                {
+                    Id = r.Id,
+                    Title = r.Title,
+                    Website = r.Website,
+                    Username = r.Username,
+                    Password = String.Empty,
+                    Description = r.Description,
+                    Created = r.Created
+                });
             }
 
             return Enumerable.Empty<Record>();

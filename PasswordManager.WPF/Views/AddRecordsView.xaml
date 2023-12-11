@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="PasswordManager.WPF.Views.AddRecords"
+﻿<UserControl x:Class="PasswordManager.WPF.Views.AddRecordsView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -35,8 +35,10 @@
 
                 <!-- Prawa strona z przyciskami -->
                 <StackPanel Height="50" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Top">
-                    <Button Content="Dodaj" Margin="10" Width="78" Command="{Binding SubmitCommand}"/>
-                    <Button Content="Powrót" Margin="10" Width="78" Command="{Binding ViewUserPanelCommand}"/>
+                    <Button Content="Dodaj" Margin="10" Width="78" Command="{Binding SubmitCommand}" MouseEnter="Button_MouseEnter"
+                            MouseLeave="Button_MouseLeave"/>
+                    <Button Content="Powrót" Margin="10" Width="78" Command="{Binding ViewUserPanelCommand}" MouseEnter="Button_MouseEnter"
+                            MouseLeave="Button_MouseLeave"/>
                 </StackPanel>
             </Grid>
         </Grid>

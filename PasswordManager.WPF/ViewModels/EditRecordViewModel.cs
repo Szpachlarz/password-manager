@@ -10,22 +10,13 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using NETCore.Encrypt;
+using PasswordManager.Domain.Models;
 
 namespace PasswordManager.WPF.ViewModels
 {
-    public class AddRecordViewModel : ViewModelBase
+    public class EditRecordViewModel : ViewModelBase
     {
-        //public RecordFormViewModel RecordFormViewModel { get; }
-
-        ////public ICommand ViewUserPanelCommand { get; }
-        ////public ICommand SubmitCommand { get; set; }
-        //public AddRecordViewModel(IAccountStore accountStore, IRecordService recordService, IRenavigator userPanelRenavigator)
-        //{
-        //    ICommand ViewUserPanelCommand = new RenavigateCommand(userPanelRenavigator);
-        //    ICommand SubmitCommand = new AddRecordCommand(this, recordService, accountStore);
-        //    RecordFormViewModel = new RecordFormViewModel(SubmitCommand, ViewUserPanelCommand);
-        //}
-
         private string _title;
         public string Title
         {
@@ -41,6 +32,20 @@ namespace PasswordManager.WPF.ViewModels
             }
         }
 
+        private int _id;
+        public int Id
+        {
+            get
+            {
+                return _id;
+            }
+            set
+            {
+                _id = value;
+                OnPropertyChanged(nameof(Id));
+            }
+        }
+        
         private string _website;
         public string Website
         {
@@ -132,15 +137,32 @@ namespace PasswordManager.WPF.ViewModels
         public bool HasErrorMessage => !string.IsNullOrEmpty(ErrorMessage);
         public bool CanSubmit => !string.IsNullOrEmpty(Title) && !string.IsNullOrEmpty(Website) && !string.IsNullOrEmpty(Username) && !string.IsNullOrEmpty(Password) /*&& Title.Length > 5 && Title.Length < 50 && Website.Length < 300 && Username.Length > 4 && Username.Length < 30 && Password.Length > 7 && Password.Length < 32*/;
 
-        public ICommand SubmitCommand { get; }
-        public ICommand ViewUserPanelCommand { get; }
+        public ICommand SubmitCommand { get; set; }
+        public ICommand ViewUserPanelCommand { get; set; }
 
-        public AddRecordViewModel(IAccountStore accountStore, IRecordService recordService, IRenavigator userPanelRenavigator)
+        public EditRecordViewModel(IAccountStore accountStore, IRecordService recordService, IRenavigator userPanelRenavigator)
         {
-            //SubmitCommand = submitCommand;
-            //ViewUserPanelCommand = cancelCommand;
+            Initialize(accountStore, recordService, userPanelRenavigator);
+        }
+        
+        private async void Initialize(IAccountStore accountStore, IRecordService recordService, IRenavigator userPanelRenavigator)
+        {
+            _id = accountStore.SelectedRecord.Id;
+            _password = await FillPassword(recordService, accountStore);
+            _username = accountStore.SelectedRecord.Username;
+            _website = accountStore.SelectedRecord.Website;
+            _title = accountStore.SelectedRecord.Title;
+            _description = accountStore.SelectedRecord.Description;
             ViewUserPanelCommand = new RenavigateCommand(userPanelRenavigator);
-            SubmitCommand = new AddRecordCommand(this, recordService, accountStore);
+            SubmitCommand = new EditRecordCommand(recordService, accountStore, userPanelRenavigator, this);
+        }
+
+        private async Task<string> FillPassword(IRecordService recordService, IAccountStore accountStore)
+        {
+            var aes = await recordService.GetAES(accountStore.CurrentUser);
+            var password = await recordService.GetPasswordById(accountStore.SelectedRecord.Id);
+            var passwordResult = EncryptProvider.AESDecrypt(password, aes.Item1, aes.Item2);
+            return passwordResult;
         }
     }
 }

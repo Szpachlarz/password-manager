@@ -15,7 +15,9 @@ namespace PasswordManager.Domain.Services
         Task<T> Create(T entity);
 
         Task<T> Update(int id, T entity);
+        Task<T> UpdateRecord(int id, T entity);
+        Task<Tuple<string,string>> GetAES(int id);
+        Task<string> GetPassword(int id);
 
-        Task<bool> Delete(int id);
     }
 }

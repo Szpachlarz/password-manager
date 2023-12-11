@@ -8,6 +8,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using HandyControl.Controls;
 
 namespace PasswordManager.WPF.Commands
 {
@@ -43,15 +44,15 @@ namespace PasswordManager.WPF.Commands
             }
             catch (UserNotFoundException)
             {
-                _loginViewModel.ErrorMessage = "Username does not exist.";
+                Growl.Warning("Podany użytownik nie istnieje!");
             }
             catch (InvalidPasswordException)
             {
-                _loginViewModel.ErrorMessage = "Incorrect password.";
+                Growl.Warning("Podano błędne hasło!");
             }
             catch (Exception)
             {
-                _loginViewModel.ErrorMessage = "Login failed.";
+                Growl.Warning("Błąd logowania!");
             }
         }
 

@@ -8,6 +8,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using HandyControl.Controls;
 
 namespace PasswordManager.WPF.Commands
 {
@@ -46,33 +47,34 @@ namespace PasswordManager.WPF.Commands
                 {
                     case RegistrationResult.Success:
                         _registerRenavigator.Renavigate();
+                        Growl.Success("Pomyślnie zarejestrowano.");
                         break;
                     case RegistrationResult.PasswordsDoNotMatch:
-                        _registerViewModel.ErrorMessage = "Podane hasła nie są takie same.";
+                        Growl.Warning("Podane hasła nie są takie same.");
                         break;
                     case RegistrationResult.UsernameAlreadyExists:
-                        _registerViewModel.ErrorMessage = "Użytkownik o podanej nazwie już istnieje.";
+                        Growl.Warning("Użytkownik o podanej nazwie już istnieje.");
                         break;
                     case RegistrationResult.UsernameTooShort:
-                        _registerViewModel.ErrorMessage = "Nazwa użytkownika jest zbyt krótka.";
+                        Growl.Warning("Nazwa użytkownika jest zbyt krótka.");
                         break;
                     case RegistrationResult.UsernameTooLong:
-                        _registerViewModel.ErrorMessage = "Nazwa użytkownika jest zbyt długa.";
+                        Growl.Warning("Nazwa użytkownika jest zbyt długa.");
                         break;
                     case RegistrationResult.PasswordTooShort:
-                        _registerViewModel.ErrorMessage = "Hasło jest zbyt krótkie.";
+                        Growl.Warning("Hasło jest zbyt krótkie.");
                         break;
                     case RegistrationResult.PasswordTooLong:
-                        _registerViewModel.ErrorMessage = "Hasło jest zbyt długie.";
+                        Growl.Warning("Hasło jest zbyt długie.");
                         break;
                     default:
-                        _registerViewModel.ErrorMessage = "Błąd rejestracji.";
+                        Growl.Warning("Błąd rejestracji.");
                         break;
                 }
             }
             catch (Exception)
             {
-                _registerViewModel.ErrorMessage = "Registration failed.";
+                Growl.Error("Błąd rejestracji.");
             }
         }
 

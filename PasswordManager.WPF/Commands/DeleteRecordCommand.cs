@@ -7,6 +7,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using HandyControl.Controls;
+using PasswordManager.WPF.Models;
 
 namespace PasswordManager.WPF.Commands
 {
@@ -15,6 +17,7 @@ namespace PasswordManager.WPF.Commands
         private readonly RecordListingItemViewModel _recordListingViewModel;
         private readonly IRecordService _recordService;
         private readonly IAccountStore _accountStore;
+        private readonly UserPanelViewModel _userPanelViewModel;
 
         public DeleteRecordCommand(IRecordService recordService, IAccountStore accountStore, RecordListingItemViewModel recordListingViewModel)
         {
@@ -24,10 +27,35 @@ namespace PasswordManager.WPF.Commands
 
             //_addRecordViewModel.PropertyChanged += AddRecordViewModel_PropertyChanged;
         }
+        
+        public DeleteRecordCommand(IRecordService recordService, IAccountStore accountStore, UserPanelViewModel userPanelViewModel)
+        {
+            _recordService = recordService;
+            _accountStore = accountStore;
+            _userPanelViewModel = userPanelViewModel;
+
+            //_addRecordViewModel.PropertyChanged += AddRecordViewModel_PropertyChanged;
+        }
         public override async Task ExecuteAsync(object parameter)
         {
-            Record record = _recordListingViewModel.Record;
-            await _recordService.DeleteRecord(record.Id, _accountStore.CurrentUser);
+            if (_recordListingViewModel != null)
+            {
+                Record record = _recordListingViewModel.Record;
+                await _recordService.DeleteRecord(record.Id, _accountStore.CurrentUser);
+            }
+            else
+            {
+                if (parameter is UserRecord record)
+                {
+                    _accountStore.CurrentUser = await _recordService.DeleteRecord(record.Id, _accountStore.CurrentUser);
+                    _userPanelViewModel.LoadRecordsCommand.Execute(null);
+                    Growl.Success("Pomyślnie usunięto rekord");
+                }
+                else
+                {
+                    Growl.Error("Nieznany błąd");
+                }
+            }
         }
     }
 }
