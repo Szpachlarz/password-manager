@@ -10,5 +10,7 @@ namespace PasswordManager.Domain.Models
     {
         public string Username { get; set; }
         public string PasswordHash { get; set; }
+        public string AesKey { get; set; } 
+        public string AesIV { get; set; }
     }
 }
