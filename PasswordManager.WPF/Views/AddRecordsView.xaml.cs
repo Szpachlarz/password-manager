@@ -18,9 +18,9 @@ namespace PasswordManager.WPF.Views
     /// <summary>
     /// Interaction logic for AddRecords.xaml
     /// </summary>
-    public partial class EditRecords : UserControl
+    public partial class AddRecordsView : UserControl
     {
-        public EditRecords()
+        public AddRecordsView()
         {
             InitializeComponent();
         }

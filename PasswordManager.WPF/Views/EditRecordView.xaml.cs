@@ -16,13 +16,22 @@ using System.Windows.Shapes;
 namespace PasswordManager.WPF.Views
 {
     /// <summary>
-    /// Logika interakcji dla klasy EditRecordView.xaml
+    /// Interaction logic for AddRecords.xaml
     /// </summary>
-    public partial class EditRecordView : Page
+    public partial class EditRecords : UserControl
     {
-        public EditRecordView()
+        public EditRecords()
         {
             InitializeComponent();
+        }
+        private void Button_MouseEnter(object sender, MouseEventArgs e)
+        {
+            Mouse.OverrideCursor = Cursors.Hand;
+        }
+
+        private void Button_MouseLeave(object sender, MouseEventArgs e)
+        {
+            Mouse.OverrideCursor = null; 
         }
     }
 }
