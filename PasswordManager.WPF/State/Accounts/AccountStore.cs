@@ -4,12 +4,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using PasswordManager.WPF.Models;
 
 namespace PasswordManager.WPF.State.Accounts
 {
     public class AccountStore : IAccountStore
     {
         private Account _currentUser;
+        public UserRecord SelectedRecord { get; set; }
+
         public Account CurrentUser
         {
             get
