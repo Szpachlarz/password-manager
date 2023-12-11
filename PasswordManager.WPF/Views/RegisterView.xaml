@@ -17,8 +17,10 @@
         <TextBox HorizontalAlignment="Center" Height="30" Margin="0,195,0,0" VerticalAlignment="Top" Width="177" FontSize="18" Text="{Binding Username, UpdateSourceTrigger=PropertyChanged}" MaxLength="30"/>
         <components:BindablePasswordBox HorizontalAlignment="Center" Margin="0,230,0,0" VerticalAlignment="Top" Height ="30" Width="177" Password="{Binding Password}"/>
         <components:BindablePasswordBox HorizontalAlignment="Center" Margin="0,265,0,0" VerticalAlignment="Top" Height ="30" Width="177" Password="{Binding ConfirmPassword}"/>
-        <Button Content="Zarejestruj się" HorizontalAlignment="Center" Height="31" Margin="0,300,0,0" VerticalAlignment="Top" Width="176" Command="{Binding RegisterCommand}"/>
-        <Button Content="Masz już konto? Zaloguj się" HorizontalAlignment="Center" Margin="0,382,0,0" VerticalAlignment="Top" Command="{Binding ViewLoginCommand}" Width="176" Height="31"/>
+        <Button Content="Zarejestruj się" HorizontalAlignment="Center" Height="31" Margin="0,300,0,0" VerticalAlignment="Top" Width="176" Command="{Binding RegisterCommand}" MouseEnter="Button_MouseEnter"
+                MouseLeave="Button_MouseLeave"/>
+        <Button Content="Masz już konto? Zaloguj się" HorizontalAlignment="Center" Margin="0,382,0,0" VerticalAlignment="Top" Command="{Binding ViewLoginCommand}" Width="176" Height="31" MouseEnter="Button_MouseEnter"
+                MouseLeave="Button_MouseLeave"/>
 
         <!--<UserControl.Resources>
             <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
