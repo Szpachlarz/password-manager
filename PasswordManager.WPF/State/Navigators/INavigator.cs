@@ -12,7 +12,8 @@ namespace PasswordManager.WPF.State.Navigators
         Login,
         Register,
         UserPanel,
-        Add
+        Add,
+        Edit
     }
 
     public interface INavigator
