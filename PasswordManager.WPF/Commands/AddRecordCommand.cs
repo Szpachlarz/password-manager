@@ -52,16 +52,18 @@ namespace PasswordManager.WPF.Commands
             //    recordFormViewModel.Username,
             //    recordFormViewModel.Password,
             //    recordFormViewModel.Description);
+            var aesKeyGen = EncryptProvider.CreateAesKey();
 
             string title = _addRecordViewModel.Title;
             string website = _addRecordViewModel.Website;
             string username = _addRecordViewModel.Username;
-            var aes = await _recordService.GetAES(_accountStore.CurrentUser);
-            string password = EncryptProvider.AESEncrypt(_addRecordViewModel.Password, aes.Item1, aes.Item2);
+            var aesKey = await _recordService.GetAESKey(_accountStore.CurrentUser);
+            var aesIV = aesKeyGen.IV;
+            string password = EncryptProvider.AESEncrypt(_addRecordViewModel.Password, aesKey, aesIV);
             string description = _addRecordViewModel.Description;
             try
             {
-                Account account = await _recordService.AddRecord(_accountStore.CurrentUser, title, website, username, password, description);
+                Account account = await _recordService.AddRecord(_accountStore.CurrentUser, title, website, username, password, description, aesIV);
 
                 _accountStore.CurrentUser = account;
                 _addRecordViewModel.Title = string.Empty;

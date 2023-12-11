@@ -34,16 +34,18 @@ namespace PasswordManager.WPF.Commands
 
         public override async Task ExecuteAsync(object parameter)
         {
-            var aes = await _recordService.GetAES(_accountStore.CurrentUser);
+            var aesKey = await _recordService.GetAESKey(_accountStore.CurrentUser);
+            var iv = await _recordService.GetAESIV(_editRecordViewModel.Id);
             Record record = new();
             record.Id = _editRecordViewModel.Id;
             record.Title = _editRecordViewModel.Title;
             record.Website = _editRecordViewModel.Website;
             record.Username = _editRecordViewModel.Username;
-            record.Password = EncryptProvider.AESEncrypt(_editRecordViewModel.Password, aes.Item1, aes.Item2);
+            record.Password = EncryptProvider.AESEncrypt(_editRecordViewModel.Password, aesKey, iv);
             record.Description = _editRecordViewModel.Description;
+            record.Created = DateTime.Now;
             await _recordService.UpdateRecord(record.Id, _accountStore.CurrentUser, record.Title, record.Website,
-                record.Username, record.Password, record.Description);
+                record.Username, record.Password, record.Description, record.Created);
             Growl.Success("Pomyślnie edytowano rekord!");
             _renavigator.Renavigate();
         }

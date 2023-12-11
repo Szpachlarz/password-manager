@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using PasswordManager.Domain.Models;
 
 namespace PasswordManager.Domain.Services
 {
@@ -13,10 +14,11 @@ namespace PasswordManager.Domain.Services
         Task<T> Get(int id);
 
         Task<T> Create(T entity);
-
-        Task<T> Update(int id, T entity);
-        Task<T> UpdateRecord(int id, T entity);
-        Task<Tuple<string,string>> GetAES(int id);
+        Task<T> AddRecord(Account account, Record record);
+        Task<T> UpdateRecord(T entity, Record record);
+        Task<T> DeleteRecord(T entity, Record record);
+        Task<string> GetAESKey(int id);
+        Task<string> GetAESIV(int id);
         Task<string> GetPassword(int id);
 
     }

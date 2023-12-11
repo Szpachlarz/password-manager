@@ -24,7 +24,7 @@ namespace PasswordManager.Domain.Services.RecordServices
             return password;
         }
 
-        public async Task<Account> AddRecord(Account account, string title, string website, string username, string password, string description)
+        public async Task<Account> AddRecord(Account account, string title, string website, string username, string password, string description, string AESIV)
         {
             Record newRecord = new Record()
             {
@@ -34,11 +34,12 @@ namespace PasswordManager.Domain.Services.RecordServices
                 Username = username,
                 Password = password,
                 Description = description,
-                Created = DateTime.Now
+                Created = DateTime.Now,
+                AES_IV = AESIV
             };
 
             account.Records.Add(newRecord);
-            await _dataService.Update(account.Id, account);
+            await _dataService.AddRecord(account, newRecord);
             return account;
         }
 
@@ -48,20 +49,23 @@ namespace PasswordManager.Domain.Services.RecordServices
 
             if (deleteRecord != null)
             {
-                account.Records.Remove(deleteRecord);
-                await _dataService.UpdateRecord(account.Id, account);
+                await _dataService.DeleteRecord(account, deleteRecord);
             }
 
             return account;
         }
 
-        public async Task<Tuple<string, string>> GetAES(Account user)
+        public async Task<string> GetAESKey(Account user)
         {
-            var aes = await _dataService.GetAES(user.Id);
-            return aes;
+            return await _dataService.GetAESKey(user.AccountHolder.Id);;
+        }
+        
+        public async Task<string> GetAESIV(int id)
+        {
+            return await _dataService.GetAESIV(id);;
         }
 
-        public async Task<Account> UpdateRecord(int recordId, Account account, string title, string website, string username, string password, string description)
+        public async Task<Account> UpdateRecord(int recordId, Account account, string title, string website, string username, string password, string description, DateTime created)
         {
             Record updateRecord = account.Records.FirstOrDefault(r => r.Id == recordId);
 
@@ -72,10 +76,11 @@ namespace PasswordManager.Domain.Services.RecordServices
                 updateRecord.Username = username;
                 updateRecord.Password = password;
                 updateRecord.Description = description;
+                updateRecord.Created = created;
             }
 
             //account.Records.Add(updatedRecord);
-            await _dataService.Update(account.Id, account);
+            await _dataService.UpdateRecord(account, updateRecord);
             return account;
         }
 

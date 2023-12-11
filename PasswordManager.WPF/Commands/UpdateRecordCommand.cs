@@ -48,7 +48,7 @@ namespace PasswordManager.WPF.Commands
                 string password = recordFormViewModel.Password;
                 string description = recordFormViewModel.Description;
 
-                Account account = await _recordService.UpdateRecord(id, _accountStore.CurrentUser, title, website, username, password, description);
+                Account account = await _recordService.UpdateRecord(id, _accountStore.CurrentUser, title, website, username, password, description, DateTime.Now);
 
                 _accountStore.CurrentUser = account;
             }
