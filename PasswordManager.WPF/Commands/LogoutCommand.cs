@@ -8,6 +8,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using HandyControl.Controls;
 
 namespace PasswordManager.WPF.Commands
 {
@@ -40,10 +41,11 @@ namespace PasswordManager.WPF.Commands
             {
                 _authenticator.Logout();
                 _renavigator.Renavigate();
+                Growl.Success("Pomyślnie wylogowano.");
             }
             catch (Exception) 
             {
-                _userPanelViewModel.ErrorMessage = "Logout failed.";
+                Growl.Error("Wystąpił błąd podczas wylogowywania.");
             }                
         }
 
