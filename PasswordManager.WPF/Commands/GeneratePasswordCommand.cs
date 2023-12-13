@@ -1,20 +1,33 @@
-﻿using System;
+﻿using PasswordManager.WPF.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 
 namespace PasswordManager.WPF.Commands
 {
-    class GeneratePasswordCommand
+    class GeneratePasswordCommand : ICommand
     {
         internal static char[] chars = "".ToCharArray();
         internal static readonly char[] chars1 = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ".ToCharArray();
         internal static readonly char[] chars2 = "1234567890".ToCharArray();
         internal static readonly char[] chars3 = "!@#$%^&*()_-+=".ToCharArray();
 
-        public static string GetUniqueKey(int size, bool enableNumbersInGenerator, bool enableSpecialCharsInGenerator)
+        internal int size;
+        internal bool enableNumbersInGenerator;
+        internal bool enableSpecialCharsInGenerator;
+
+        public event EventHandler? CanExecuteChanged;
+        public AddRecordViewModel addRecordViewModel;
+        public GeneratePasswordCommand(AddRecordViewModel addRecordViewModel)
+        {
+            this.addRecordViewModel = addRecordViewModel;
+        }
+
+        public string GetUniqueKey()
         {
             int charCase = 0;
             if (enableNumbersInGenerator == false && enableSpecialCharsInGenerator == false)
@@ -81,6 +94,19 @@ namespace PasswordManager.WPF.Commands
             }
             Console.WriteLine(result);
             return result.ToString();
+        }
+
+        public bool CanExecute(object? parameter)
+        {
+            return true;
+        }
+
+        public void Execute(object? parameter)
+        {
+            size = 8;
+            enableNumbersInGenerator = addRecordViewModel.IsNumber;
+            enableSpecialCharsInGenerator = addRecordViewModel.IsSpecial;
+            addRecordViewModel.Password = GetUniqueKey();
         }
     }
 }
