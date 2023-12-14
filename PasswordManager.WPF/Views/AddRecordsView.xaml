@@ -97,12 +97,13 @@
                         <ColumnDefinition Width="4*"/>
                     </Grid.ColumnDefinitions>
                 </Grid>
-                <CheckBox Name="IsNumber" HorizontalAlignment="Left" Margin="466,48,0,0" Grid.Row="6" VerticalAlignment="Top" IsChecked="True"/>
-                <CheckBox Name="IsSpecial" HorizontalAlignment="Left" Margin="466,85,0,0" Grid.Row="6" VerticalAlignment="Top" IsChecked="True"/>
+                <CheckBox Name="IsNumber" HorizontalAlignment="Left" Margin="466,48,0,0" Grid.Row="6" VerticalAlignment="Top" IsChecked="{Binding IsNumber, UpdateSourceTrigger=PropertyChanged}"/>
+                <CheckBox Name="IsSpecial" HorizontalAlignment="Left" Margin="466,85,0,0" Grid.Row="6" VerticalAlignment="Top" IsChecked="{Binding IsSpecial, UpdateSourceTrigger=PropertyChanged}"/>
                 <TextBlock HorizontalAlignment="Left" Margin="51,40,0,0" FontSize="24" Grid.Row="6" TextWrapping="Wrap" Text="Czy mają się znaleźć liczby?" VerticalAlignment="Top"/>
                 <TextBlock HorizontalAlignment="Left" Margin="51,77,0,0" FontSize="24" Grid.Row="6" TextWrapping="Wrap" Text="Czy mają się znaleźć znaki specjalne?" VerticalAlignment="Top"/>
                 <TextBlock HorizontalAlignment="Left" Margin="51,117,0,0" FontSize="24" Grid.Row="6" TextWrapping="Wrap" Text="Jak długie ma być hasło?" VerticalAlignment="Top" Width="365"/>
-                <Slider Name="RequiredLength" HorizontalAlignment="Left" Margin="354,131,0,0" Grid.Row="6" VerticalAlignment="Top" Width="120" Minimum="8" Maximum="30"/>
+                <Slider Name="RequiredLength" HorizontalAlignment="Left" Margin="354,131,0,0" Grid.Row="6" VerticalAlignment="Top" Width="120" Minimum="8" Maximum="30" Value="{Binding RequiredLength, UpdateSourceTrigger=PropertyChanged}"/>
+                <TextBlock HorizontalAlignment="Left" Margin="485,124,0,0" FontSize="24" Grid.Row="6" TextWrapping="Wrap" Text="{Binding ElementName=RequiredLength, Path=Value}" VerticalAlignment="Top" TextAlignment="Center" Width="26"/>
 
             </Grid>
         </Grid>

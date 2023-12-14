@@ -19,12 +19,15 @@ namespace PasswordManager.WPF.Commands
         internal int size;
         internal bool enableNumbersInGenerator;
         internal bool enableSpecialCharsInGenerator;
-
         public event EventHandler? CanExecuteChanged;
-        public AddRecordViewModel addRecordViewModel;
+        public dynamic addRecordViewModel;
         public GeneratePasswordCommand(AddRecordViewModel addRecordViewModel)
         {
             this.addRecordViewModel = addRecordViewModel;
+        }
+        public GeneratePasswordCommand(EditRecordViewModel editRecordViewModel)
+        {
+            addRecordViewModel = editRecordViewModel;
         }
 
         public string GetUniqueKey()
@@ -103,7 +106,7 @@ namespace PasswordManager.WPF.Commands
 
         public void Execute(object? parameter)
         {
-            size = 8;
+            size = addRecordViewModel.RequiredLength;
             enableNumbersInGenerator = addRecordViewModel.IsNumber;
             enableSpecialCharsInGenerator = addRecordViewModel.IsSpecial;
             addRecordViewModel.Password = GetUniqueKey();

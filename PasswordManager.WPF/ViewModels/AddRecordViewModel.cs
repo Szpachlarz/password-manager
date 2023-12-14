@@ -142,7 +142,7 @@ namespace PasswordManager.WPF.ViewModels
             }
         }
 
-        private int _requiredLength;
+        private int _requiredLength = 8;
         public int RequiredLength
         {
             get
