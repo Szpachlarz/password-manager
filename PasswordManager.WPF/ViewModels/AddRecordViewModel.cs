@@ -114,6 +114,48 @@ namespace PasswordManager.WPF.ViewModels
             }
         }
 
+        private bool _isNumber;
+        public bool IsNumber
+        {
+            get
+            {
+                return _isNumber;
+            }
+            set
+            {
+                _isNumber = value;
+                OnPropertyChanged(nameof(IsNumber));
+            }
+        }
+
+        private bool _isSpecial;
+        public bool IsSpecial
+        {
+            get
+            {
+                return _isSpecial;
+            }
+            set
+            {
+                _isSpecial = value;
+                OnPropertyChanged(nameof(IsSpecial));
+            }
+        }
+
+        private int _requiredLength = 8;
+        public int RequiredLength
+        {
+            get
+            {
+                return _requiredLength;
+            }
+            set
+            {
+                _requiredLength = value;
+                OnPropertyChanged(nameof(RequiredLength));
+            }
+        }
+
         private string _errorMessage;
         public string ErrorMessage
         {
@@ -134,6 +176,7 @@ namespace PasswordManager.WPF.ViewModels
 
         public ICommand SubmitCommand { get; }
         public ICommand ViewUserPanelCommand { get; }
+        public ICommand GeneratePasswdCommand { get; }
 
         public AddRecordViewModel(IAccountStore accountStore, IRecordService recordService, IRenavigator userPanelRenavigator)
         {
@@ -141,6 +184,7 @@ namespace PasswordManager.WPF.ViewModels
             //ViewUserPanelCommand = cancelCommand;
             ViewUserPanelCommand = new RenavigateCommand(userPanelRenavigator);
             SubmitCommand = new AddRecordCommand(this, recordService, accountStore);
+            GeneratePasswdCommand = new GeneratePasswordCommand(this);
         }
     }
 }
